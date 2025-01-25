@@ -10,6 +10,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#43C3D1",
+        secondary: "#2884FF",
+        tertiary: "#061123",
+        accent: "#39EEEE",
+      },
+      fontFamily: {
+        gilroy: ["var(--font-gilroy)"],
       },
     },
   },
