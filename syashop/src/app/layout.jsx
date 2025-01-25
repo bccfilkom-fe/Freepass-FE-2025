@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={` ${gilroy.variable} font-gilroy antialiased container mx-auto px-6 md:px-6 lg:px-20 `}
+        className={` ${gilroy.variable} font-gilroy antialiased container mx-auto px-6 md:px-6 lg:px-20`}
       >
         <Navbar />
         {children}

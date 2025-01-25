@@ -1,6 +1,8 @@
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export async function fetchProducts() {
   try {
-    const response = await fetch(`${BASE_URL}/api/products`);
+    const response = await fetch(`${baseURL}/api/products`);
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }
@@ -13,7 +15,7 @@ export async function fetchProducts() {
 }
 export async function fetchProductById(id) {
   try {
-    const response = await fetch(`${BASE_URL}/api/products/${id}`);
+    const response = await fetch(`${baseURL}/api/products/${id}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch product with ID ${id}`);
     }
