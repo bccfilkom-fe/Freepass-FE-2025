@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "@/features/daashboard/components/header";
-import HeaderSkeleton from "@/features/daashboard/components/header-skeleton";
-import type { TabHref } from "@/features/daashboard/data/tabs";
+import Header from "@/features/dashboard/components/header";
+import HeaderSkeleton from "@/features/dashboard/components/header-skeleton";
+import type { TabHref } from "@/features/dashboard/data/tabs";
 import { useSessionQuery } from "@/shared/repository/session-manager/query";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
