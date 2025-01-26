@@ -13,21 +13,10 @@ export default function Layout({
 	children: React.ReactNode;
 }>) {
 	const pathname = usePathname();
-	const { data, isLoading } = useSessionQuery();
-
-	if (isLoading) {
-		return <HeaderSkeleton />;
-	}
-
-	if (!data || !data.role) {
-		throw new Error("Session data is not available");
-	}
 
 	return (
 		<section className="flex flex-col h-screen">
-			<Suspense fallback={<HeaderSkeleton />}>
-				<Header activeTab={pathname as TabHref} role={data?.role} />
-			</Suspense>
+			<Header activeTab={pathname as TabHref} />
 			<div className="flex flex-col flex-1 overflow-y-auto p-4">{children}</div>
 		</section>
 	);

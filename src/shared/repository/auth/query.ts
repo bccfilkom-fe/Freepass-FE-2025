@@ -34,6 +34,7 @@ export const useRegisterMutation = () => {
 		mutationKey: ["auth-session"],
 		mutationFn: (data: RegisterRequest) => register(data),
 		onSuccess: async (data) => {
+			toast.success(data.message);
 			queryClient.refetchQueries({ queryKey: ["auth-session"] });
 		},
 	});
