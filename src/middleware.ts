@@ -1,7 +1,7 @@
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import { tabsData } from "./features/daashboard/data/tabs";
+import { tabsData } from "./features/dashboard/data/tabs";
 import { type SessionData, sessionOptions } from "./shared/lib/session";
 
 export async function middleware(req: NextRequest) {
