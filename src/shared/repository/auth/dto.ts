@@ -1,3 +1,4 @@
+import type { RoleMap } from "@/shared/lib/map-data";
 import { z } from "zod";
 
 export const LoginSchema = z.object({
@@ -18,3 +19,15 @@ export const RegisterSchema = z.object({
 });
 
 export type RegisterRequest = z.infer<typeof RegisterSchema>;
+
+type UserResponse = {
+	id: string;
+	name: string;
+	email: string;
+	role: keyof typeof RoleMap;
+	image_uri?: string;
+};
+
+export type GetSessionResponse = {
+	user: UserResponse;
+};

@@ -1,11 +1,11 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createSession } from "../session-manager/action";
-import { login, logout, register } from "./action";
+import { getSession, login, logout, register } from "./action";
 import type { LoginRequest, RegisterRequest } from "./dto";
 
 export const useLoginMutation = () => {
@@ -52,5 +52,12 @@ export const useLogoutMutation = () => {
 			router.push("/");
 			queryClient.resetQueries({ queryKey: ["auth-session"] });
 		},
+	});
+};
+
+export const useSessionQuery = () => {
+	return useQuery({
+		queryKey: ["auth-session"],
+		queryFn: () => getSession(),
 	});
 };

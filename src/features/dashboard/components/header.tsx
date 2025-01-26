@@ -6,8 +6,10 @@ import {
 	AvatarImage,
 } from "@/shared/components/ui/avatar";
 import { Button } from "@/shared/components/ui/button";
-import { useLogoutMutation } from "@/shared/repository/auth/query";
-import { useSessionQuery } from "@/shared/repository/session-manager/query";
+import {
+	useLogoutMutation,
+	useSessionQuery,
+} from "@/shared/repository/auth/query";
 import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -29,23 +31,25 @@ export default function Header({ activeTab }: Props) {
 		return <HeaderSkeleton />;
 	}
 
-	if (!data || !data.role) {
+	if (!data) {
 		return <p>Error loading user data</p>;
 	}
 
-	const { role } = data;
+	const { role, name, image_uri } = data.payload.user;
 
 	return (
 		<div className="flex flex-col px-4 pt-4 border-b-2 gap-2">
 			<div className="flex justify-between items-center ">
-				<h1>Hi, (Name)</h1>
+				<h1>Hi, {name} </h1>
 				<div className="flex space-x-2">
 					<Avatar>
-						<AvatarImage
-							src="https://avatars.githubusercontent.com/u/29647600?v=4"
-							alt="Avatar"
-						/>
-						<AvatarFallback>U</AvatarFallback>
+						<AvatarImage src={image_uri} alt="Avatar" />
+						<AvatarFallback>
+							{name
+								.split(" ")
+								.map((val) => val[0])
+								.join("")}
+						</AvatarFallback>
 					</Avatar>
 					<Button size="icon" onClick={() => logout()}>
 						<LogOutIcon />

@@ -4,8 +4,11 @@ import { Button } from "@/shared/components/ui/button";
 import { Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Skeleton } from "../../../shared/components/ui/skeleton";
+import { useSessionQuery } from "../../../shared/repository/auth/query";
 
 export default function Header() {
+	const [isOpen, setOpen] = useState(false);
 	const navigationItems = [
 		{
 			title: "Home",
@@ -13,7 +16,8 @@ export default function Header() {
 		},
 	];
 
-	const [isOpen, setOpen] = useState(false);
+	const { data, isLoading } = useSessionQuery();
+
 	return (
 		<header className="w-full z-40 fixed top-0 left-0 bg-background">
 			<div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
@@ -30,9 +34,19 @@ export default function Header() {
 					<p className="font-semibold">BCC Conference</p>
 				</div>
 				<div className="flex justify-end w-full gap-4 pr-2">
-					<Button variant="outline" asChild>
-						<Link href="/login">Login</Link>
-					</Button>
+					{data ? (
+						isLoading ? (
+							<Skeleton className="w-10 h-10 rounded-full" />
+						) : (
+							<Link href="/dashboard">
+								<Button variant="secondary">Dashboard</Button>
+							</Link>
+						)
+					) : (
+						<Link href="/login">
+							<Button variant="ghost">Login</Button>
+						</Link>
+					)}
 				</div>
 				<div className="flex w-12 shrink lg:hidden items-end justify-end pr-4">
 					<Button variant="ghost" onClick={() => setOpen(!isOpen)}>
