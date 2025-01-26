@@ -1,4 +1,4 @@
-export async function GET(req) {
+export async function GET() {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
     if (!response.ok) {

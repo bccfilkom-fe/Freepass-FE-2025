@@ -1,8 +1,10 @@
 import StarRating from "./StarRating";
 
-const Card = ({ img, title, category, price, count, rating }) => {
+const Card = ({ img, title, category, price, count, rating, classname }) => {
   return (
-    <div className="w-full hover:scale-110 transition-all hover:bg-sl border-2 shadow-inner rounded-lg pb-10 ">
+    <div
+      className={`${classname} w-full hover:scale-105 transition-all hover:bg-sl border-2 shadow-inner rounded-lg pb-10 `}
+    >
       <div className="h-5/6 p-10 ">
         <img className="w-fit aspect-square" src={img} alt="" />
       </div>

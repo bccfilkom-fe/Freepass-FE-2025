@@ -8,7 +8,8 @@ import { usePathname } from "next/navigation";
 
 const NavLink = [
   { name: "Home", link: "/home" },
-  { name: "Product", link: "/products" },
+  { name: "Products", link: "/products" },
+  { name: "Category", link: "/category" },
 ];
 
 export const MobileNav = ({ isOpen }) => {
@@ -27,7 +28,11 @@ const Navbar = () => {
       <ul className=" gap-4 text-xl justify-center w-2/4 lg:flex hidden">
         {NavLink.map((item, index) => (
           <li
-            className={pathname === item.link ? `font-bold text-primary` : ``}
+            className={
+              pathname === item.link || pathname.startsWith(item.link)
+                ? `font-bold text-primary border-b-2 border-primary  duration-300 transition-all`
+                : `opacity-60 active:scale-90 transition-all duration-200`
+            }
             key={index}
           >
             <Link href={item.link}>{item.name}</Link>
