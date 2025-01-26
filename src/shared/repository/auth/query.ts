@@ -41,11 +41,14 @@ export const useRegisterMutation = () => {
 
 export const useLogoutMutation = () => {
 	const queryClient = useQueryClient();
+	const router = useRouter();
 
 	return useMutation({
 		mutationKey: ["auth-session"],
 		mutationFn: () => logout(),
 		onSuccess: () => {
+			toast.success("Logout success");
+			router.push("/");
 			queryClient.resetQueries({ queryKey: ["auth-session"] });
 		},
 	});
