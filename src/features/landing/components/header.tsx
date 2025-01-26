@@ -30,7 +30,9 @@ export default function Header() {
 					<p className="font-semibold">BCC Conference</p>
 				</div>
 				<div className="flex justify-end w-full gap-4 pr-2">
-					<Button variant="outline">Sign in</Button>
+					<Button variant="outline" asChild>
+						<Link href="/login">Login</Link>
+					</Button>
 				</div>
 				<div className="flex w-12 shrink lg:hidden items-end justify-end pr-4">
 					<Button variant="ghost" onClick={() => setOpen(!isOpen)}>
