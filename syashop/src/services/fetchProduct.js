@@ -8,6 +8,7 @@ export async function fetchProducts() {
     }
     const data = await response.json();
     return data;
+    console.log(data);
   } catch (error) {
     console.error(error);
     throw error;

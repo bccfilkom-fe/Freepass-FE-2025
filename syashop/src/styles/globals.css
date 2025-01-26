@@ -12,3 +12,7 @@ body {
 .hero-img {
   background-image: url("../../public/HeroImg.png");
 }
+
+.hover-animation {
+  @apply hover:scale-110 hover:bg-slate-200 transition-all;
+}

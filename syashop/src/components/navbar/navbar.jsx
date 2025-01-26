@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 const NavLink = [
   { name: "Home", link: "/home" },
-  { name: "Product", link: "/product" },
+  { name: "Product", link: "/products" },
 ];
 
 export const MobileNav = ({ isOpen }) => {
