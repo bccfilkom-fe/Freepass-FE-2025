@@ -18,6 +18,11 @@ export const tabsData = {
 	],
 	2: [
 		{
+			label: "Overview",
+
+			href: "/dashboard/overview",
+		},
+		{
 			label: "Session Management",
 
 			href: "/dashboard/session-management",
@@ -29,6 +34,11 @@ export const tabsData = {
 		},
 	],
 	3: [
+		{
+			label: "Overview",
+
+			href: "/dashboard/overview",
+		},
 		{
 			label: "User Management",
 
