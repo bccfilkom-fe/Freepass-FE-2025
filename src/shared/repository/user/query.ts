@@ -1,7 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { getUsers } from "./action";
-import type { GetUsersQuery } from "./dto";
+import { toast } from "sonner";
+import { useSheetStore } from "../../hooks/use-sheet";
+import { createUser, deleteUser, getUsers } from "./action";
+import type { CreateUserRequest, GetUsersQuery } from "./dto";
 
 export const useUsersQuery = () => {
 	const searchParams = useSearchParams();
@@ -28,5 +30,41 @@ export const useUsersQuery = () => {
 				sort_by,
 				sort_order,
 			}),
+	});
+};
+
+export const useCreateUserMutation = () => {
+	const queryClient = useQueryClient();
+	const { closeSheet } = useSheetStore();
+
+	return useMutation({
+		mutationFn: (req: CreateUserRequest) => createUser(req),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			closeSheet();
+			queryClient.invalidateQueries({
+				queryKey: ["users"],
+			});
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useDeleteUserMutation = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationFn: (userId: string) => deleteUser({ userId }),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			queryClient.invalidateQueries({
+				queryKey: ["users"],
+			});
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
 	});
 };

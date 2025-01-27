@@ -1,3 +1,4 @@
+import { z } from "zod";
 import type { RoleMap } from "../../lib/map-data";
 import type { PaginationResponse } from "../../types/response";
 
@@ -32,4 +33,16 @@ export type GetUsersResponse = {
 
 export type GetUserResponse = {
 	user: UserResponse;
+};
+
+export const CreateUserSchema = z.object({
+	name: z.string().min(3),
+	email: z.string().email(),
+	password: z.string().min(8),
+});
+
+export type CreateUserRequest = z.infer<typeof CreateUserSchema>;
+
+export type DeleteUserQuery = {
+	userId: string;
 };

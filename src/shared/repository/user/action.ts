@@ -5,7 +5,12 @@ import { handleResponse } from "../../lib/response-handler";
 import type { GlobalResponse } from "../../types/response";
 import { getSession } from "../session-manager/action";
 
-import type { GetUsersQuery, GetUsersResponse } from "./dto";
+import type {
+	CreateUserRequest,
+	DeleteUserQuery,
+	GetUsersQuery,
+	GetUsersResponse,
+} from "./dto";
 
 export async function getUsers({
 	search,
@@ -21,7 +26,7 @@ export async function getUsers({
 	else url.searchParams.append("page", "1");
 
 	if (limit) url.searchParams.append("limit", limit.toString());
-	else url.searchParams.append("limit", "1");
+	else url.searchParams.append("limit", "10");
 
 	if (search) url.searchParams.append("search", search);
 	if (role) url.searchParams.append("role", role.toString());
@@ -40,4 +45,43 @@ export async function getUsers({
 	});
 
 	return handleResponse<GetUsersResponse>("Get users", res);
+}
+
+export async function createUser(
+	req: CreateUserRequest,
+): Promise<GlobalResponse<null>> {
+	const url = new URL(`${env.API_URL}/users`);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+		body: JSON.stringify(req),
+	});
+
+	return handleResponse<null>("Create user", res);
+}
+
+export async function deleteUser({
+	userId,
+}: DeleteUserQuery): Promise<GlobalResponse<null>> {
+	const url = new URL(`${env.API_URL}/users/${userId}`);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+	});
+
+	return handleResponse<null>("Delete user", res);
 }

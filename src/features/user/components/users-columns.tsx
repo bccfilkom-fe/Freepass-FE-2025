@@ -1,8 +1,13 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import { EyeIcon, Loader2Icon, Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "../../../shared/components/ui/button";
+import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
 import { RoleMap } from "../../../shared/lib/map-data";
+import { useDeleteUserMutation } from "../../../shared/repository/user/query";
+import DeleteUserAlert from "./delete-user-alert";
 
 export type UserColumns = {
 	id: string;
@@ -52,6 +57,45 @@ export const userColumns: ColumnDef<UserColumns>[] = [
 			return (
 				<div className="px-2 py-1 rounded-lg border text-xs bg-secondary w-min">
 					<span>{RoleMap[role]}</span>
+				</div>
+			);
+		},
+	},
+	{
+		header: "Action",
+		cell(props) {
+			const { mutate: deleteUser, isPending } = useDeleteUserMutation();
+			const { openAlertDialog } = useAlertDialogStore();
+
+			const id = props.row.getValue<UserColumns["id"]>("id");
+
+			return (
+				<div className="flex gap-2">
+					{/* ! TODO: go to /profile/{id} */}
+					<Button
+						size="icon"
+						variant="outline"
+						onClick={() => {}}
+						disabled={isPending}
+					>
+						<EyeIcon />
+					</Button>
+					<Button
+						size="icon"
+						variant="destructive"
+						onClick={() =>
+							openAlertDialog({
+								children: <DeleteUserAlert onAction={() => deleteUser(id)} />,
+							})
+						}
+						disabled={isPending}
+					>
+						{isPending ? (
+							<Loader2Icon className="animate-spin" />
+						) : (
+							<Trash2Icon />
+						)}
+					</Button>
 				</div>
 			);
 		},
