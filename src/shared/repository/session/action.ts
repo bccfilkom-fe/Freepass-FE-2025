@@ -41,11 +41,6 @@ export async function getSessions({
 
 	const session = await getSession();
 
-	// Add proposer_id to the query params if the user is a proposer
-	if (session.role === 1 && session.user_id) {
-		url.searchParams.append("proposer_id", session.user_id);
-	}
-
 	const res = await fetch(url.toString(), {
 		method: "GET",
 		headers: {
