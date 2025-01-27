@@ -14,6 +14,10 @@ export default function Header() {
 			title: "Home",
 			href: "/",
 		},
+		{
+			title: "Sessions",
+			href: "/sessions",
+		},
 	];
 
 	const { data, isLoading } = useSessionQuery();
@@ -25,7 +29,9 @@ export default function Header() {
 					{navigationItems.map((item) => (
 						<div key={item.title}>
 							<div className="flex flex-col gap-2">
-								<Button variant="ghost">{item.title}</Button>
+								<Link href={item.href}>
+									<Button variant="ghost">{item.title}</Button>
+								</Link>
 							</div>
 						</div>
 					))}
