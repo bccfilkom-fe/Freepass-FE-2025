@@ -22,13 +22,9 @@ export async function getUsers({
 }: GetUsersQuery): Promise<GlobalResponse<GetUsersResponse>> {
 	const url = new URL(`${env.API_URL}/users`);
 
-	if (page) url.searchParams.append("page", page.toString());
-	else url.searchParams.append("page", "1");
-
-	if (limit) url.searchParams.append("limit", limit.toString());
-	else url.searchParams.append("limit", "10");
-
-	if (search) url.searchParams.append("search", search);
+	url.searchParams.append("page", page.toString());
+	url.searchParams.append("limit", limit.toString());
+	url.searchParams.append("search", search);
 	if (role) url.searchParams.append("role", role.toString());
 	if (sort_by) url.searchParams.append("sort_by", sort_by);
 	if (sort_order) url.searchParams.append("sort_order", sort_order);

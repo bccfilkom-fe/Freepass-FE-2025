@@ -10,14 +10,16 @@ export const useUsersQuery = () => {
 
 	console.log(searchParams, "[searchParams]");
 
-	const search = searchParams.get("search");
-	const page = Number(searchParams.get("page"));
-	const limit = Number(searchParams.get("limit"));
-	const role = searchParams.get("role") as GetUsersQuery["role"];
-	const sort_by = searchParams.get("sort_by") as GetUsersQuery["sort_by"];
-	const sort_order = searchParams.get(
-		"sort_order",
-	) as GetUsersQuery["sort_order"];
+	const search = searchParams.get("search") || "";
+	const page = Number(searchParams.get("page")) || 1;
+	const limit = Number(searchParams.get("limit")) || 10;
+	const role =
+		(Number(searchParams.get("role")) as GetUsersQuery["role"]) || undefined;
+	const sort_by =
+		(searchParams.get("sort_by") as GetUsersQuery["sort_by"]) || undefined;
+	const sort_order =
+		(searchParams.get("sort_order") as GetUsersQuery["sort_order"]) ||
+		undefined;
 
 	return useQuery({
 		queryKey: ["users", page, limit, search],

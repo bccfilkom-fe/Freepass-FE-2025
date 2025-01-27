@@ -11,19 +11,12 @@ export type UserResponse = {
 };
 
 export type GetUsersQuery = {
-	role: keyof typeof RoleMap | null;
-	search: string | null;
-	page: number | null;
-	limit: number | null;
-	sort_by:
-		| "id"
-		| "name"
-		| "email"
-		| "role"
-		| "created_at"
-		| "updated_at"
-		| null;
-	sort_order: "asc" | "desc" | null;
+	role?: keyof typeof RoleMap;
+	search: string;
+	page: number;
+	limit: number;
+	sort_by?: "id" | "name" | "email" | "role" | "created_at" | "updated_at";
+	sort_order?: "asc" | "desc";
 };
 
 export type GetUsersResponse = {

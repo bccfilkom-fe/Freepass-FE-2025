@@ -29,12 +29,14 @@ export const useLoginMutation = () => {
 
 export const useRegisterMutation = () => {
 	const queryClient = useQueryClient();
+	const router = useRouter();
 
 	return useMutation({
 		mutationKey: ["auth-session"],
 		mutationFn: (data: RegisterRequest) => register(data),
 		onSuccess: async (data) => {
 			toast.success(data.message);
+			router.push("/login");
 			queryClient.refetchQueries({ queryKey: ["auth-session"] });
 		},
 	});

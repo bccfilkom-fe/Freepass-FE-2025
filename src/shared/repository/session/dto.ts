@@ -29,16 +29,17 @@ export type GetSessionsResponse = {
 };
 
 export type GetSessionsQuery = {
-	search: string | null;
-	page: number | null;
-	limit: number | null;
-	type: number | null;
-	tags: string[] | null;
-	sort_by: "id" | "title" | "start_at" | "end_at" | "capacity" | null;
-	sort_order: "asc" | "desc" | null;
-	before_at: string | null; // iso string
-	after_at: string | null; // iso string
-	status: keyof typeof SessionStatusMap | null;
+	search: string;
+	page: number;
+	limit: number;
+	type?: keyof typeof SessionTypeMap;
+	tags?: string[];
+	sort_by?: "id" | "title" | "start_at" | "end_at" | "capacity";
+	sort_order?: "asc" | "desc";
+	before_at?: string; // iso string
+	after_at?: string; // iso string
+	status?: keyof typeof SessionStatusMap;
+	proposer_id?: string;
 };
 
 export type GetSessionResponse = {

@@ -25,15 +25,12 @@ export async function getSessions({
 	after_at,
 	status,
 }: GetSessionsQuery): Promise<GlobalResponse<GetSessionsResponse>> {
-	const url = new URL(`${env.API_URL}/sessions/public`);
+	const url = new URL(`${env.API_URL}/sessions`);
 
-	if (page) url.searchParams.append("page", page.toString());
-	else url.searchParams.append("page", "1");
-
-	if (limit) url.searchParams.append("limit", limit.toString());
-	else url.searchParams.append("limit", "10");
-
-	if (search) url.searchParams.append("search", search);
+	url.searchParams.append("page", page.toString());
+	url.searchParams.append("limit", limit.toString());
+	url.searchParams.append("limit", "10");
+	url.searchParams.append("search", search);
 	if (type) url.searchParams.append("type", type.toString());
 	if (tags) url.searchParams.append("tags", tags.join(","));
 	if (sort_by) url.searchParams.append("sort_by", sort_by);
@@ -42,45 +39,12 @@ export async function getSessions({
 	if (after_at) url.searchParams.append("after_at", after_at);
 	if (status) url.searchParams.append("status", status.toString());
 
-	const res = await fetch(url.toString(), {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-			"x-api-key": env.API_KEY,
-		},
-	});
-
-	return handleResponse<GetSessionsResponse>("Get sessions", res);
-}
-
-export async function getMySessions({
-	search,
-	page,
-	limit,
-	type,
-	tags,
-	sort_by,
-	sort_order,
-	before_at,
-	after_at,
-}: GetSessionsQuery): Promise<GlobalResponse<GetSessionsResponse>> {
-	const url = new URL(`${env.API_URL}/sessions`);
-
-	if (page) url.searchParams.append("page", page.toString());
-	else url.searchParams.append("page", "1");
-
-	if (limit) url.searchParams.append("limit", limit.toString());
-	else url.searchParams.append("limit", "10");
-
-	if (search) url.searchParams.append("search", search);
-	if (type) url.searchParams.append("type", type.toString());
-	if (tags) url.searchParams.append("tags", tags.join(","));
-	if (sort_by) url.searchParams.append("sort_by", sort_by);
-	if (sort_order) url.searchParams.append("sort_order", sort_order);
-	if (before_at) url.searchParams.append("before_at", before_at);
-	if (after_at) url.searchParams.append("after_at", after_at);
-
 	const session = await getSession();
+
+	// Add proposer_id to the query params if the user is a proposer
+	if (session.role === 1 && session.user_id) {
+		url.searchParams.append("proposer_id", session.user_id);
+	}
 
 	const res = await fetch(url.toString(), {
 		method: "GET",

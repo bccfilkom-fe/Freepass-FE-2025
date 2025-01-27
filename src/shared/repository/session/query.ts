@@ -23,25 +23,26 @@ import type {
 export const useSessionsQuery = () => {
 	const searchParams = useSearchParams();
 
-	const search = searchParams.get("search");
-	const page = Number(searchParams.get("page"));
-	const limit = Number(searchParams.get("limit"));
-	const type = Number(searchParams.get("type"));
-	const status = Number(
-		searchParams.get("status"),
-	) as GetSessionsQuery["status"];
-	const tags = searchParams.get("tags")
-		? searchParams.get("tags")?.split(",") || null
-		: null;
-	const sort_by = searchParams.get("sort_by") as GetSessionsQuery["sort_by"];
-	const sort_order = searchParams.get(
-		"sort_order",
-	) as GetSessionsQuery["sort_order"];
-	const before_at = searchParams.get("before_at");
-	const after_at = searchParams.get("after_at");
+	const search = searchParams.get("search") || "";
+	const page = Number(searchParams.get("page")) || 1;
+	const limit = Number(searchParams.get("limit")) || 10;
+	const type =
+		(Number(searchParams.get("type")) as GetSessionsQuery["type"]) || undefined;
+	const status =
+		(Number(searchParams.get("status")) as GetSessionsQuery["status"]) ||
+		undefined;
+	const tags = searchParams.get("tags")?.split(",") || undefined;
+	const sort_by =
+		(searchParams.get("sort_by") as GetSessionsQuery["sort_by"]) || undefined;
+	const sort_order =
+		(searchParams.get("sort_order") as GetSessionsQuery["sort_order"]) ||
+		undefined;
+	const before_at = searchParams.get("before_at") || undefined;
+	const after_at = searchParams.get("after_at") || undefined;
+	const proposer_id = searchParams.get("proposer_id") || undefined;
 
 	return useQuery({
-		queryKey: ["session", search, page, limit, type],
+		queryKey: ["session", page, limit, search],
 		queryFn: () =>
 			getSessions({
 				search,
@@ -54,6 +55,7 @@ export const useSessionsQuery = () => {
 				before_at,
 				after_at,
 				status,
+				proposer_id,
 			}),
 	});
 };
