@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { useDialogStore } from "../../hooks/use-dialog";
 import { useSheetStore } from "../../hooks/use-sheet";
@@ -22,15 +22,13 @@ import type {
 
 export const useSessionsQuery = () => {
 	const searchParams = useSearchParams();
+	const pathname = usePathname();
 
 	const search = searchParams.get("search") || "";
 	const page = Number(searchParams.get("page")) || 1;
 	const limit = Number(searchParams.get("limit")) || 10;
 	const type =
 		(Number(searchParams.get("type")) as GetSessionsQuery["type"]) || undefined;
-	const status =
-		(Number(searchParams.get("status")) as GetSessionsQuery["status"]) ||
-		undefined;
 	const tags = searchParams.get("tags")?.split(",") || undefined;
 	const sort_by =
 		(searchParams.get("sort_by") as GetSessionsQuery["sort_by"]) || undefined;
@@ -40,6 +38,13 @@ export const useSessionsQuery = () => {
 	const before_at = searchParams.get("before_at") || undefined;
 	const after_at = searchParams.get("after_at") || undefined;
 	const proposer_id = searchParams.get("proposer_id") || undefined;
+
+	let status =
+		(Number(searchParams.get("status")) as GetSessionsQuery["status"]) ||
+		undefined;
+
+	if (pathname.startsWith("/sessions")) status = 2; // accepted
+	if (pathname.startsWith("/dashboard/session-proposal-management")) status = 1; // pending
 
 	return useQuery({
 		queryKey: ["session", page, limit, search],

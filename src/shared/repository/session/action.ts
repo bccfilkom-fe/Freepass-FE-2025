@@ -13,31 +13,20 @@ import type {
 	RejectSessionRequest,
 } from "./dto";
 
-export async function getSessions({
-	search,
-	page,
-	limit,
-	type,
-	tags,
-	sort_by,
-	sort_order,
-	before_at,
-	after_at,
-	status,
-}: GetSessionsQuery): Promise<GlobalResponse<GetSessionsResponse>> {
+export async function getSessions(
+	query: GetSessionsQuery,
+): Promise<GlobalResponse<GetSessionsResponse>> {
 	const url = new URL(`${env.API_URL}/sessions`);
 
-	url.searchParams.append("page", page.toString());
-	url.searchParams.append("limit", limit.toString());
-	url.searchParams.append("limit", "10");
-	url.searchParams.append("search", search);
-	if (type) url.searchParams.append("type", type.toString());
-	if (tags) url.searchParams.append("tags", tags.join(","));
-	if (sort_by) url.searchParams.append("sort_by", sort_by);
-	if (sort_order) url.searchParams.append("sort_order", sort_order);
-	if (before_at) url.searchParams.append("before_at", before_at);
-	if (after_at) url.searchParams.append("after_at", after_at);
-	if (status) url.searchParams.append("status", status.toString());
+	for (const [key, value] of Object.entries(query)) {
+		if (value !== undefined && value !== "") {
+			if (Array.isArray(value)) {
+				url.searchParams.append(key, value.join(","));
+			} else {
+				url.searchParams.append(key, value.toString());
+			}
+		}
+	}
 
 	const session = await getSession();
 
