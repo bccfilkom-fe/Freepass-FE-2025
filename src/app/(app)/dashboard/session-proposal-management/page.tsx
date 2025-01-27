@@ -1,6 +1,6 @@
 "use client";
 
-import ProposalsTableContainer from "../../../../features/sesion-proposal-management/container/proposals-table-container";
+import ProposalsTableContainer from "../../../../features/session-proposal-management/container/proposals-table-container";
 
 export default function Page() {
 	return (
