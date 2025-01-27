@@ -9,7 +9,7 @@ export default function ProposalsTableContainer() {
 	const pagination = usePagination();
 
 	if (error) {
-		toast.error("Failed to fetch users");
+		toast.error("Failed to fetch sesion proposals");
 	}
 
 	console.log(data?.payload.sessions);
