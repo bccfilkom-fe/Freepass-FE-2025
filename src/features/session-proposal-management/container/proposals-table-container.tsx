@@ -1,3 +1,5 @@
+"use client";
+
 import { toast } from "sonner";
 import usePagination from "../../../shared/hooks/use-pagination";
 import { useSessionsQuery } from "../../../shared/repository/session/query";
