@@ -4,6 +4,8 @@ import {
 	SessionTagMap,
 	type SessionTypeMap,
 } from "../../lib/map-data";
+import type { PaginationResponse } from "../../types/response";
+import type { UserResponse } from "../user/dto";
 
 export type SessionResponse = {
 	id: string;
@@ -18,10 +20,12 @@ export type SessionResponse = {
 	room?: string;
 	image_uri?: string;
 	status: keyof typeof SessionStatusMap;
+	proposer: UserResponse;
 };
 
 export type GetSessionsResponse = {
 	sessions: SessionResponse[];
+	meta: PaginationResponse;
 };
 
 export type GetSessionsQuery = {
@@ -34,6 +38,7 @@ export type GetSessionsQuery = {
 	sort_order: "asc" | "desc" | null;
 	before_at: string | null; // iso string
 	after_at: string | null; // iso string
+	status: keyof typeof SessionStatusMap | null;
 };
 
 export type GetSessionResponse = {
@@ -103,3 +108,41 @@ export const EditSessionSchema = z
 	});
 
 export type EditSessionRequest = z.infer<typeof CreateSessionSchema>;
+
+export const AcceptSessionSchema = z
+	.object({
+		title: z.string().min(3).max(255),
+		description: z.string().optional(),
+		type: z.number().int().min(1).max(1),
+		tags: z
+			.array(
+				z
+					.string()
+					.refine((tag) => SessionTagMap[tag as keyof typeof SessionTagMap]),
+			)
+			.optional(),
+		start_at: z.date().refine((arg) => arg > new Date(), {
+			message: "Start date must be in the future",
+		}),
+		end_at: z.date(),
+		capacity: z.number().int().min(1),
+		meeting_url: z.string().optional(),
+		room: z.string().optional(),
+	})
+	.refine((arg) => arg.start_at < arg.end_at, {
+		message: "End date must be after start date",
+	})
+	.refine((arg) => arg.meeting_url || arg.room, {
+		message: "Either meeting url or room id must be provided",
+	})
+	.refine((arg) => !(arg.meeting_url && arg.room), {
+		message: "Only one of meeting url or room id can be provided",
+	});
+
+export type AcceptSessionRequest = z.infer<typeof AcceptSessionSchema>;
+
+export const RejectSessionSchema = z.object({
+	reason: z.string().min(3).max(255),
+});
+
+export type RejectSessionRequest = z.infer<typeof RejectSessionSchema>;

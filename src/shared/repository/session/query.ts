@@ -3,14 +3,22 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useDialogStore } from "../../hooks/use-dialog";
 import { useSheetStore } from "../../hooks/use-sheet";
 import {
+	acceptSessionProposal,
 	createSession,
 	editSession,
-	getMySessions,
 	getSessionEvent,
+	getSessions,
+	rejectSessionProposal,
 } from "./action";
-import type { EditSessionRequest, GetSessionsQuery } from "./dto";
+import type {
+	AcceptSessionRequest,
+	EditSessionRequest,
+	GetSessionsQuery,
+	RejectSessionRequest,
+} from "./dto";
 
 export const useSessionsQuery = () => {
 	const searchParams = useSearchParams();
@@ -19,6 +27,9 @@ export const useSessionsQuery = () => {
 	const page = Number(searchParams.get("page"));
 	const limit = Number(searchParams.get("limit"));
 	const type = Number(searchParams.get("type"));
+	const status = Number(
+		searchParams.get("status"),
+	) as GetSessionsQuery["status"];
 	const tags = searchParams.get("tags")
 		? searchParams.get("tags")?.split(",") || null
 		: null;
@@ -30,9 +41,9 @@ export const useSessionsQuery = () => {
 	const after_at = searchParams.get("after_at");
 
 	return useQuery({
-		queryKey: ["session"],
+		queryKey: ["session", search, page, limit, type],
 		queryFn: () =>
-			getMySessions({
+			getSessions({
 				search,
 				page,
 				limit,
@@ -42,6 +53,7 @@ export const useSessionsQuery = () => {
 				sort_order,
 				before_at,
 				after_at,
+				status,
 			}),
 	});
 };
@@ -81,6 +93,42 @@ export const useEditSessionMutation = (id: string) => {
 		onSuccess: (data) => {
 			toast.success(data.message);
 			closeSheet();
+			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useAcceptSessionProposalMutation = (id: string) => {
+	const { closeSheet } = useSheetStore();
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ["session"],
+		mutationFn: (data: AcceptSessionRequest) => acceptSessionProposal(data, id),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			closeSheet();
+			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useRejectSessionProposalMutation = (id: string) => {
+	const { closeDialog } = useDialogStore();
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ["session"],
+		mutationFn: (data: RejectSessionRequest) => rejectSessionProposal(data, id),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			closeDialog();
 			queryClient.invalidateQueries({ queryKey: ["session"] });
 		},
 		onError: (error) => {
