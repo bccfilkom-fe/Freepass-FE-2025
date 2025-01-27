@@ -1,20 +1,22 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import ProposalsTableContainer from "../../../../features/sesion-proposal-management/container/proposals-table-container";
 
 export default function Page() {
 	const searchParams = useSearchParams();
-	const status = searchParams.get("status");
-	if (!status) {
-		const router = useRouter();
-		const pathname = usePathname();
-		const urlSearchParams = new URLSearchParams(searchParams);
-		urlSearchParams.set("status", "1"); // pending
+	const router = useRouter();
+	const pathname = usePathname();
 
-		router.replace(`${pathname}?${urlSearchParams.toString()}`);
-	}
+	useEffect(() => {
+		// Always set status to 1
+		const urlSearchParams = new URLSearchParams(searchParams);
+		if (urlSearchParams.get("status") !== "1") {
+			urlSearchParams.set("status", "1");
+			router.replace(`${pathname}?${urlSearchParams.toString()}`);
+		}
+	}, [searchParams, pathname, router]);
 
 	return (
 		<section className="flex flex-col gap-4 h-screen">
