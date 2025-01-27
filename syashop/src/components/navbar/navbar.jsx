@@ -3,8 +3,9 @@
 import Hamburger from "hamburger-react";
 import { ShoppingBasketIcon } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
+import { CartContext } from "@/context/CartContext";
 
 const NavLink = [
   { name: "Home", link: "/home" },
@@ -21,6 +22,7 @@ export const MobileNav = ({ isOpen }) => {
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const pathname = usePathname();
+  const { totalItems } = useContext(CartContext);
 
   return (
     <nav className=" w-full h-12 mt-4 grid-cols-3  flex items-center justify-between">
@@ -41,6 +43,7 @@ const Navbar = () => {
       </ul>
       <div className="w-1/4 justify-center items-center gap-x-4 lg:flex hidden">
         <ShoppingBasketIcon className=" w-8 h-8" />
+        <span>{totalItems()}</span>
         <img className="aspect-square rounded-full w-8 bg-primary" />
         <div className="text-xs">
           <h5>Welcome Back !</h5>

@@ -30,7 +30,7 @@ export async function fetchProductById(id) {
 
 export async function fetchProductByCategory(category) {
   try {
-    const response = await fetch(`${baseURL}/api/products/${category}`);
+    const response = await fetch(`${baseURL}/api/category/${category}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch product with category ${category}`);
     }

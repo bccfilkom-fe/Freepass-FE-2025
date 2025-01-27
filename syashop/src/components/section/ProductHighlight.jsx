@@ -7,10 +7,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
 import { Pagination } from "swiper/modules";
 
-const ProductHighlight = ({ product, title }) => {
+const ProductHighlight = ({ product, title, category }) => {
   return (
     <section className="mt-10 text-2xl font-bold">
-      <h2 className="">{title}</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="">{title}</h2>
+        {category && (
+          <Link href={`/category/${category}`} className="font-light text-lg">
+            See More
+          </Link>
+        )}
+      </div>
       <section className="w-full h-[33rem] 2xl:h-[35rem] lg:h-[28rem]">
         <Swiper
           spaceBetween={50}

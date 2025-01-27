@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import localFont from "next/font/local";
 import Navbar from "../components/navbar/Navbar";
+import CartProvider from "@/context/CartContext";
 const gilroy = localFont({
   src: [
     {
@@ -48,8 +49,10 @@ export default function RootLayout({ children }) {
       <body
         className={` ${gilroy.variable} font-gilroy antialiased container mx-auto px-6 md:px-6 lg:px-20`}
       >
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

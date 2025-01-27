@@ -1,14 +1,18 @@
 export async function GET(req, { params }) {
-  const { category } = await params;
-
+  const { categoryname } = params;
   try {
     const response = await fetch(
-      `https://fakestoreapi.com/products/category/${category}`
+      `https://fakestoreapi.com/products/category/${categoryname}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch category");
     }
     const data = await response.json();
+
+    if (data.length === 0) {
+      throw new Error("No products found in this category");
+    }
+
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: { "Content-Type": "application/json" },
