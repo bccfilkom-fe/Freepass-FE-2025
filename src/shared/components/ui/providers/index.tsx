@@ -1,5 +1,6 @@
 "use client";
 
+import GlobalAlertDialog from "@/shared/hooks/use-alert-dialog";
 import GlobalSheet from "@/shared/hooks/use-sheet";
 import type React from "react";
 import { Toaster } from "../sonner";
@@ -11,6 +12,7 @@ export default function Provider({ children }: React.PropsWithChildren) {
 			{children}
 			<Toaster richColors />
 			<GlobalSheet />
+			<GlobalAlertDialog />
 		</ReactQueryProvider>
 	);
 }
