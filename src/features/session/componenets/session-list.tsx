@@ -1,7 +1,5 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { Checkbox } from "../../../shared/components/ui/checkbox";
 import {
 	DateField,
@@ -102,7 +100,10 @@ export default function SessionList() {
 						return <SessionCard key={session.id} session={session} />;
 					})
 				) : (
-					<p>No sessions proposed, go propose your own!</p>
+					<p>
+						There are no sessions available at the moment. Please check back
+						later or propose your own session!
+					</p>
 				)}
 			</div>
 		</div>
