@@ -24,10 +24,13 @@ import {
 } from "../../../shared/components/ui/form";
 import { Input } from "../../../shared/components/ui/input";
 import { Textarea } from "../../../shared/components/ui/textarea";
+import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
+import { useSheetStore } from "../../../shared/hooks/use-sheet";
 import { SessionTagMap } from "../../../shared/lib/map-data";
 import type { SessionResponse } from "../../../shared/repository/session/dto";
 import { useGetSessionQuery } from "../../../shared/repository/session/query";
 import { useEditSessionForm } from "../hooks/use-edit-session-form";
+import DeleteProposalAlert from "./delete-proposal-dialog";
 
 type Props = {
 	id: string;
@@ -66,6 +69,9 @@ function EditProposalForm({
 	});
 
 	const isPending = session.status === 1;
+
+	const { closeSheet } = useSheetStore();
+	const { openAlertDialog } = useAlertDialogStore();
 
 	return (
 		<Form {...form}>
@@ -279,14 +285,33 @@ function EditProposalForm({
 						);
 					}}
 				/>
-				<Button
-					type="submit"
-					className="w-full"
-					disabled={form.isLoading || !isPending}
-				>
-					{form.isLoading && <LoaderIcon className="animate-spin" size={20} />}
-					Edit Proposal
-				</Button>
+
+				<div className="flex gap-2">
+					<Button
+						type="button"
+						className="w-full"
+						variant="destructive"
+						disabled={!isPending}
+						onClick={() => {
+							closeSheet();
+							openAlertDialog({
+								children: <DeleteProposalAlert id={id} />,
+							});
+						}}
+					>
+						Delete Proposal
+					</Button>
+					<Button
+						type="submit"
+						className="w-full"
+						disabled={form.isLoading || !isPending}
+					>
+						{form.isLoading && (
+							<LoaderIcon className="animate-spin" size={20} />
+						)}
+						Edit Proposal
+					</Button>
+				</div>
 			</form>
 		</Form>
 	);

@@ -8,6 +8,7 @@ import { useSheetStore } from "../../hooks/use-sheet";
 import {
 	acceptSessionProposal,
 	createSession,
+	deleteSession,
 	editSession,
 	getSessionEvent,
 	getSessions,
@@ -100,6 +101,22 @@ export const useEditSessionMutation = (id: string) => {
 		onSuccess: (data) => {
 			toast.success(data.message);
 			closeSheet();
+			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useDeleteSessionMutation = (id: string) => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ["session"],
+		mutationFn: () => deleteSession(id),
+		onSuccess: (data) => {
+			toast.success(data.message);
 			queryClient.invalidateQueries({ queryKey: ["session"] });
 		},
 		onError: (error) => {

@@ -102,6 +102,23 @@ export async function editSession(
 	return handleResponse<null>("Update session", res);
 }
 
+export async function deleteSession(id: string): Promise<GlobalResponse<null>> {
+	const url = new URL(`${env.API_URL}/sessions/${id}`);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+	});
+
+	return handleResponse<null>("Delete session", res);
+}
+
 export async function acceptSessionProposal(
 	req: AcceptSessionRequest,
 	id: string,
