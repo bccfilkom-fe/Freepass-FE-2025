@@ -47,7 +47,7 @@ export const useSessionsQuery = () => {
 	if (pathname.startsWith("/dashboard/session-proposal-management")) status = 1; // pending
 
 	return useQuery({
-		queryKey: ["session", page, limit, search, status],
+		queryKey: ["session", page, limit, search],
 		queryFn: () =>
 			getSessions({
 				search,
