@@ -1,4 +1,4 @@
-import { ClockIcon, MapPinIcon } from "lucide-react";
+import { Armchair, ClockIcon, MapPinIcon } from "lucide-react";
 import Link from "next/link";
 import { formatDates } from "../../../shared/lib/date-formatter";
 import { SessionTagMap, SessionTypeMap } from "../../../shared/lib/map-data";
@@ -41,6 +41,12 @@ export default function SessionCard({ session }: Prop) {
 						<ClockIcon className="w-4 h-4" />
 						<span className="text-sm">
 							{formatDates(session.start_at, session.end_at)}
+						</span>
+					</div>
+					<div className="flex row gap-2 items-center">
+						<Armchair className="w-4 h-4" />
+						<span className="text-sm">
+							<span className="font-semibold">{session.capacity}</span> Slot
 						</span>
 					</div>
 				</div>
