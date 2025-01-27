@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/shared/components/ui/input";
 import useDebounce from "@/shared/hooks/use-debounce";
 import { useEffect, useState } from "react";
