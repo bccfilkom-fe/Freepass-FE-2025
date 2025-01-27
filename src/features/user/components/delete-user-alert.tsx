@@ -24,7 +24,7 @@ export default function DeleteUserAlert({ onAction }: Prop) {
 			</AlertDialogHeader>
 			<AlertDialogFooter>
 				<AlertDialogCancel>Cancel</AlertDialogCancel>
-				<AlertDialogAction onClick={onAction}>Continue</AlertDialogAction>
+				<AlertDialogAction onClick={onAction}>Yes</AlertDialogAction>
 			</AlertDialogFooter>
 		</AlertDialogContent>
 	);
