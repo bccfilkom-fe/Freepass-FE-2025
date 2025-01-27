@@ -3,15 +3,16 @@ import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 import { tabsData } from "./features/dashboard/data/tabs";
 import { type SessionData, sessionOptions } from "./shared/lib/session";
+import { getSession } from "./shared/repository/session-manager/action";
 
 export async function middleware(req: NextRequest) {
 	const { pathname } = req.nextUrl;
-	const session = await getIronSession<SessionData>(
-		await cookies(),
-		sessionOptions,
-	);
+	const session = await getSession();
 
-	if ((!session || !session.isLoggedIn) && pathname.startsWith("/dashboard")) {
+	if (
+		(!session || !session.isLoggedIn) &&
+		(pathname.startsWith("/dashboard") || pathname.startsWith("/sessions"))
+	) {
 		return NextResponse.redirect(new URL("/login", req.nextUrl));
 	}
 
@@ -31,5 +32,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/dashboard/:path*"],
+	matcher: ["/dashboard/:path*", "/sessions"],
 };
