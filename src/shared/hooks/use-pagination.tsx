@@ -1,14 +1,14 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
-import { useSheetStore } from "./use-sheet";
+import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Adjust as needed
+import { useCallback, useEffect, useState } from "react";
+import useDebounce from "./use-debounce";
 
 export default function usePagination() {
-	const store = useSheetStore();
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
 
-	const [paginationState, setPaginationState] = useState({
+	// Initial state based on URL search parameters
+	const [paginationState, setPaginationState] = useState(() => ({
 		pageIndex: searchParams.get("page")
 			? Number(searchParams.get("page")) - 1
 			: 0,
@@ -16,32 +16,54 @@ export default function usePagination() {
 			? Number(searchParams.get("limit"))
 			: 10,
 		search: searchParams.get("search") || "",
-	});
+	}));
 
-	const handlePageChange = (pageIndex: number) => {
-		setPaginationState((prevState) => ({
-			...prevState,
-			pageIndex,
-		}));
+	// Debounced version of search state
+	const debouncedSearch = useDebounce(paginationState.search, 500);
 
-		const urlSearchParams = new URLSearchParams(searchParams);
-		urlSearchParams.set("page", (pageIndex + 1).toString());
-		urlSearchParams.set("limit", paginationState.pageSize.toString());
+	// Utility function to update the query string
+	const updateQueryString = useCallback(
+		(newParams: Record<string, string>) => {
+			const urlSearchParams = new URLSearchParams(searchParams);
+			for (const [key, value] of Object.entries(newParams)) {
+				if (value) urlSearchParams.set(key, value);
+				else urlSearchParams.delete(key); // Remove the key if value is empty
+			}
+			router.replace(`${pathname}?${urlSearchParams.toString()}`);
+		},
+		[router, pathname, searchParams],
+	);
 
-		router.replace(`${pathname}?${urlSearchParams.toString()}`);
-	};
+	const handlePageChange = useCallback(
+		(pageIndex: number) => {
+			setPaginationState((prevState) => ({
+				...prevState,
+				pageIndex,
+			}));
+			updateQueryString({
+				page: (pageIndex + 1).toString(),
+				limit: paginationState.pageSize.toString(),
+			});
+		},
+		[updateQueryString, paginationState.pageSize],
+	);
 
-	const handleSearch = (search: string) => {
+	// Set search state (debounced effect happens automatically)
+	const handleSearch = useCallback((search: string) => {
 		setPaginationState((prevState) => ({
 			...prevState,
 			search,
+			pageIndex: 0, // Reset to first page on new search
 		}));
+	}, []);
 
-		const urlSearchParams = new URLSearchParams(searchParams);
-		urlSearchParams.set("search", search);
-
-		router.replace(`${pathname}?${urlSearchParams.toString()}`);
-	};
+	// Effect to update the query string when the debounced search changes
+	useEffect(() => {
+		updateQueryString({
+			search: debouncedSearch,
+			page: "1", // Reset to the first page
+		});
+	}, [debouncedSearch, updateQueryString]);
 
 	return {
 		paginationState,

@@ -1,7 +1,7 @@
 import { toast } from "sonner";
+import SearchInput from "../../../shared/components/search-input";
 import usePagination from "../../../shared/hooks/use-pagination";
 import { useUsersQuery } from "../../../shared/repository/user/query";
-import SearchInput from "../components/search-input";
 import UsersTable from "../components/users-table";
 
 export default function UsersTableContainer() {
@@ -14,7 +14,11 @@ export default function UsersTableContainer() {
 
 	return (
 		<div className="space-y-2">
-			<SearchInput handleSearch={pagination.handleSearch} />
+			<SearchInput
+				handleSearch={pagination.handleSearch}
+				value={pagination.paginationState.search}
+				placeholder="Search users..."
+			/>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : data ? (

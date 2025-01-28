@@ -1,9 +1,9 @@
 "use client";
 
 import { toast } from "sonner";
+import SearchInput from "../../../shared/components/search-input";
 import usePagination from "../../../shared/hooks/use-pagination";
 import { useSessionsQuery } from "../../../shared/repository/session/query";
-import SearchInput from "../components/search-input";
 import SessionTable from "../components/session-table";
 
 export default function SessionsTableContainer() {
@@ -16,7 +16,11 @@ export default function SessionsTableContainer() {
 
 	return (
 		<div className="space-y-2">
-			<SearchInput handleSearch={pagination.handleSearch} />
+			<SearchInput
+				handleSearch={pagination.handleSearch}
+				value={pagination.paginationState.search}
+				placeholder="Search sessions..."
+			/>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : data ? (

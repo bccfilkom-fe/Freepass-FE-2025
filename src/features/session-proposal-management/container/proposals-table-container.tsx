@@ -1,10 +1,10 @@
 "use client";
 
 import { toast } from "sonner";
+import SearchInput from "../../../shared/components/search-input";
 import usePagination from "../../../shared/hooks/use-pagination";
 import { useSessionsQuery } from "../../../shared/repository/session/query";
 import ProposalTable from "../components/proposal-table";
-import SearchInput from "../components/search-input";
 
 export default function ProposalsTableContainer() {
 	const { data, isLoading, error } = useSessionsQuery({ status: 1 });
@@ -16,7 +16,11 @@ export default function ProposalsTableContainer() {
 
 	return (
 		<div className="space-y-2">
-			<SearchInput handleSearch={pagination.handleSearch} />
+			<SearchInput
+				handleSearch={pagination.handleSearch}
+				value={pagination.paginationState.search}
+				placeholder="Search session proposals..."
+			/>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : data ? (
