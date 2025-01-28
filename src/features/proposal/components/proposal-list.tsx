@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import ProposalCard from "./proposal-card";
 
 export default function ProposalList() {
-	const { data, error, isLoading } = useSessionsQuery();
+	const { data, error, isLoading } = useSessionsQuery({ status: 0 });
 
 	if (isLoading) {
 		return <p>Loading sessions...</p>;

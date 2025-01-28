@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { useAlertDialogStore } from "../../hooks/use-alert-dialog";
 import { useDialogStore } from "../../hooks/use-dialog";
@@ -26,9 +26,12 @@ import type {
 	RejectSessionRequest,
 } from "./dto";
 
-export const useSessionsQuery = () => {
+export const useSessionsQuery = ({
+	status,
+}: {
+	status: GetSessionsQuery["status"];
+}) => {
 	const searchParams = useSearchParams();
-	const pathname = usePathname();
 
 	const search = searchParams.get("search") || "";
 	const page = Number(searchParams.get("page")) || 1;
@@ -45,15 +48,8 @@ export const useSessionsQuery = () => {
 	const after_at = searchParams.get("after_at") || undefined;
 	const proposer_id = searchParams.get("proposer_id") || undefined;
 
-	let status =
-		(Number(searchParams.get("status")) as GetSessionsQuery["status"]) ||
-		undefined;
-
-	if (pathname.startsWith("/sessions")) status = 2; // accepted
-	if (pathname.startsWith("/dashboard/session-proposal-management")) status = 1; // pending
-
 	return useQuery({
-		queryKey: ["session", page, limit, search],
+		queryKey: ["session", page, limit, search, status],
 		queryFn: () =>
 			getSessions({
 				search,

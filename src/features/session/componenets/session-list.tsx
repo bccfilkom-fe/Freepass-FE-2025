@@ -17,7 +17,7 @@ import { useSessionsQuery } from "../../../shared/repository/session/query";
 import SessionCard from "./session-card";
 
 export default function SessionList() {
-	const { isLoading, data } = useSessionsQuery();
+	const { isLoading, data } = useSessionsQuery({ status: 2 });
 
 	if (isLoading || !data) {
 		return (

@@ -48,7 +48,7 @@ export type GetSessionsQuery = {
 	sort_order?: "asc" | "desc";
 	before_at?: string; // iso string
 	after_at?: string; // iso string
-	status?: keyof typeof SessionStatusMap;
+	status: keyof typeof SessionStatusMap;
 	proposer_id?: string;
 };
 

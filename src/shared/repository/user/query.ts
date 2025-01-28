@@ -8,8 +8,6 @@ import type { CreateUserRequest, GetUsersQuery } from "./dto";
 export const useUsersQuery = () => {
 	const searchParams = useSearchParams();
 
-	console.log(searchParams, "[searchParams]");
-
 	const search = searchParams.get("search") || "";
 	const page = Number(searchParams.get("page")) || 1;
 	const limit = Number(searchParams.get("limit")) || 10;

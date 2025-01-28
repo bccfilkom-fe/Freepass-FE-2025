@@ -7,14 +7,12 @@ import SearchInput from "../components/search-input";
 import SessionTable from "../components/session-table";
 
 export default function SessionsTableContainer() {
-	const { data, isLoading, error } = useSessionsQuery();
+	const { data, isLoading, error } = useSessionsQuery({ status: 2 });
 	const pagination = usePagination();
 
 	if (error) {
 		toast.error("Failed to fetch sessions");
 	}
-
-	console.log(data?.payload.sessions);
 
 	return (
 		<div className="space-y-2">
