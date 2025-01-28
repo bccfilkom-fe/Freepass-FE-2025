@@ -6,7 +6,7 @@ const DetailProduct = ({ product }) => {
   return (
     <section className="">
       <div className="font-bold text-sm lg:text-sm xl:text-lg mb-5 flex gap-x-2">
-        <span className="text-blue-400 ">Products </span>
+        <span className="text-primary ">Products </span>
         <span>&gt;</span>
         <h1 className="truncate">{product.title}</h1>
       </div>
@@ -20,7 +20,7 @@ const DetailProduct = ({ product }) => {
               {product.category}
             </h4>
             <span className="flex gap-4">
-              <Send className="rotate-45 text-blue-400" />
+              <Send className="rotate-45 text-primary" />
               <Heart className="bg-slate-50" />
             </span>
           </div>
@@ -48,7 +48,7 @@ const DetailProduct = ({ product }) => {
         </div>
       </section>
       <section className="mt-10 ">
-        <h1 className="font-bold text-lg ; text-blue-400">Description</h1>
+        <h1 className="font-bold text-lg ; text-primary">Description</h1>
         <p className="font-light text-justify ">{product.description}</p>
       </section>
     </section>

@@ -42,7 +42,7 @@ const CategoryNavbar = () => {
             }
           >
             <span className="w-1/3 flex justify-end">{item.icon}</span>
-            <Link className="w-2/3" href={`/category/${item.link}`}>
+            <Link className="w-2/3" href={`/products/category/${item.link}`}>
               {item.name}
             </Link>
           </li>

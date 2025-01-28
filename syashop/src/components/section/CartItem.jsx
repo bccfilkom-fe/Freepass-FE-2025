@@ -13,7 +13,7 @@ const CartItem = ({
   removeCartItem,
 }) => {
   return (
-    <div className="w-full rounded-xl aspect-video min-h-[9rem] md:h-[10rem] relative flex shadow-md border-2">
+    <div className="w-full  rounded-xl px-4 aspect-video min-h-[9rem] md:h-[10rem] relative flex shadow-md border-2">
       <button onClick={removeCartItem}>
         <Plus className=" absolute rotate-45 right-2 top-2 text-red-500" />
       </button>
@@ -22,11 +22,11 @@ const CartItem = ({
         className="w-[40%] object-contain aspect-square p-4"
         alt=""
       />
-      <div className="w-[60%]py-4 flex flex-col justify-center">
+      <div className="w-[60%] py-4 flex flex-col justify-center">
         <span className="font-bold text-xs md:text-lg text-primary">
           {category}
         </span>
-        <span>{title}</span>
+        <h1 className="truncate">{title}</h1>
         <h4 className="font-bold">
           $ {price} <span className="font-light text-sm">/ item</span>
         </h4>

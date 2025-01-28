@@ -40,7 +40,7 @@ const ProductHighlight = ({ product, title, category }) => {
         >
           {product.map((product) => (
             <SwiperSlide key={product.id} className="pt-10">
-              <Link href={`/products/${product.id}`}>
+              <Link href={`/products/detail/${product.id}`}>
                 <Card
                   title={product.title}
                   img={product.image}

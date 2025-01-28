@@ -33,7 +33,7 @@ const CategoryList = async () => {
           <li key={index}>
             <Link
               className="border-2 hover-animation font-semibold text-sm items-center rounded-lg shadow-sm px-2 py-2 flex gap-2"
-              href={`category/${item.link}`}
+              href={`products/category/${item.link}`}
             >
               {item.icon}
               <span>{item.name}</span>

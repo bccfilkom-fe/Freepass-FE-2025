@@ -6,8 +6,8 @@ import Link from "next/link";
 const EmptyCart = () => {
   return (
     <div className=" w-full flex flex-col items-center justify-center  overflow-hidden  rounded-xl">
-      <Image className="w-fit " src={Cart} alt="cart" />
-      <h4>
+      <Image className="w-72 " src={Cart} alt="cart" />
+      <h4 className="text-center">
         Your cart is currently empty. Start adding items to fill it up with your
         favorite products!
       </h4>

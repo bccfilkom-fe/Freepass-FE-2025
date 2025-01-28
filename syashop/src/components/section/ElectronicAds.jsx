@@ -14,7 +14,7 @@ const ElectronicAds = () => {
         </h2>
         <Link
           className="md:px-4 md:py-2 px-2 py-1 bg-primary  w-fit rounded-lg text-white"
-          href={"/category/electronics"}
+          href={"/products/category/electronics"}
         >
           Shop Now
         </Link>

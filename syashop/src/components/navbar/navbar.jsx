@@ -1,28 +1,20 @@
 "use client";
 
 import Hamburger from "hamburger-react";
-import { ShoppingBasketIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import CartNotification from "../ui/CartNotification";
+import MobileNav from "./MobileNav";
 
 const NavLink = [
   { name: "Home", link: "/home" },
   { name: "Products", link: "/products" },
-  { name: "Category", link: "/category" },
 ];
-
-export const MobileNav = ({ isOpen }) => {
-  return (
-    <div className="bg-slate-200 w-full z-10 left-0 absolute  h-[10rem] mx-0 container "></div>
-  );
-};
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const pathname = usePathname();
-
   return (
     <nav className=" w-full h-12 mt-4 grid-cols-3  flex items-center justify-between">
       <h1 className="font-bold text-3xl w-1/4 text-primary ">syashop</h1>
@@ -40,17 +32,17 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <div className="w-1/4 justify-center items-center gap-x-4 lg:flex hidden">
-        <Link href={"/cart"}>
-          <CartNotification />
-        </Link>
+      <Link className=" lg:ml-10 ml-28" href={"/cart"}>
+        <CartNotification />
+      </Link>
+      <div className="justify-center items-center gap-x-4 lg:flex hidden">
         <img className="aspect-square rounded-full w-8 bg-primary" />
         <div className="text-xs">
           <h5>Welcome Back !</h5>
           <h5 className="font-semibold">username</h5>
         </div>
       </div>
-      <div className="lg:hidden">
+      <div className="lg:hidden ">
         <Hamburger toggled={isOpen} toggle={setOpen} />
         {isOpen && <MobileNav />}
       </div>

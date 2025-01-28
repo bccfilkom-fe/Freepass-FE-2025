@@ -11,10 +11,10 @@ const AddToCartBtn = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const handleAddToCart = () => {
     setLoading(true);
-    addToCart(product, quantity);
 
     setTimeout(() => {
       setLoading(false);
+      addToCart(product, quantity);
       ToastSuccess();
     }, 1000);
   };

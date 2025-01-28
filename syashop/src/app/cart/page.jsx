@@ -43,11 +43,11 @@ const Page = () => {
         )}
       </section>
       {totalItems > 0 && (
-        <section className="lg:w-1/4">
+        <section className="lg:w-1/4 mt-10">
           <Payment
             subTotal={subTotal}
             shippingFee={shippingFee}
-            finalPrice={(subTotal - shippingFee).toFixed(2)}
+            finalPrice={(subTotal + shippingFee).toFixed(2)}
           />
         </section>
       )}
