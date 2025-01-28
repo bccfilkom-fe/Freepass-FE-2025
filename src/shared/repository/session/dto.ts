@@ -21,6 +21,16 @@ export type SessionResponse = {
 	image_uri?: string;
 	status: keyof typeof SessionStatusMap;
 	proposer: UserResponse;
+	count_attendees: number;
+};
+
+export type SessionAttendeeResponse = {
+	session_id: string;
+	user_id: string;
+	review?: string;
+	reason?: string;
+	session: SessionResponse;
+	user: UserResponse;
 };
 
 export type GetSessionsResponse = {
@@ -44,6 +54,18 @@ export type GetSessionsQuery = {
 
 export type GetSessionResponse = {
 	session: SessionResponse;
+};
+
+export type GetSessionAttendeesquery = {
+	page: number;
+	limit: number;
+	sort_by?: "id" | "title" | "start_at" | "end_at" | "capacity";
+	sort_order?: "asc" | "desc";
+};
+
+export type GetSessionAttendeesResponse = {
+	session_attendees: SessionAttendeeResponse[];
+	meta: PaginationResponse;
 };
 
 export const CreateSessionSchema = z

@@ -9,8 +9,10 @@ import { useSheetStore } from "../../hooks/use-sheet";
 import {
 	acceptSessionProposal,
 	createSession,
+	deleteReviewSession,
 	deleteSession,
 	editSession,
+	getSessionAttendees,
 	getSessionEvent,
 	getSessions,
 	registerSession,
@@ -19,6 +21,7 @@ import {
 import type {
 	AcceptSessionRequest,
 	EditSessionRequest,
+	GetSessionAttendeesquery,
 	GetSessionsQuery,
 	RejectSessionRequest,
 } from "./dto";
@@ -72,6 +75,25 @@ export const useGetSessionQuery = (sessionId: string) => {
 	return useQuery({
 		queryKey: ["session", sessionId],
 		queryFn: () => getSessionEvent(sessionId),
+	});
+};
+
+export const useGetSessionAttendeesQuery = (sessionId: string) => {
+	const searchParams = useSearchParams();
+	const page = Number(searchParams.get("page")) || 1;
+	const limit = Number(searchParams.get("limit")) || 10;
+	const sort_by =
+		(searchParams.get("sort_by") as GetSessionAttendeesquery["sort_by"]) ||
+		undefined;
+	const sort_order =
+		(searchParams.get(
+			"sort_order",
+		) as GetSessionAttendeesquery["sort_order"]) || undefined;
+
+	return useQuery({
+		queryKey: ["session", sessionId, "attendees", page, limit],
+		queryFn: () =>
+			getSessionAttendees(sessionId, { page, limit, sort_by, sort_order }),
 	});
 };
 
@@ -174,6 +196,22 @@ export const useRegisterSessionMutation = (id: string) => {
 			toast.success(data.message);
 			closeAlertDialog();
 			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useDeleteReviewMutation = (sessionId: string, userId: string) => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationKey: ["session", sessionId, "review", userId],
+		mutationFn: () => deleteReviewSession(sessionId, userId),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			queryClient.invalidateQueries({ queryKey: ["session", sessionId] });
 		},
 		onError: (error) => {
 			toast.error(error.message);

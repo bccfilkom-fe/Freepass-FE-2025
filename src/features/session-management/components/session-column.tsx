@@ -2,6 +2,7 @@
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "../../../shared/components/ui/button";
 import { formatDates } from "../../../shared/lib/date-formatter";
@@ -57,8 +58,16 @@ export const sessionColumns: ColumnDef<SessionColumns>[] = [
 		header: "Action",
 		cell(props) {
 			const id = props.row.getValue<SessionColumns["id"]>("id");
+			const pathname = usePathname();
+			const router = useRouter();
 			return (
-				<Button size="icon" variant="outline" onClick={() => {}}>
+				<Button
+					size="icon"
+					variant="outline"
+					onClick={() => {
+						router.push(`${pathname}/${id}`);
+					}}
+				>
 					<EyeIcon />
 				</Button>
 			);

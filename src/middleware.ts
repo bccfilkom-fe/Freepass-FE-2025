@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
 	if (
 		session.role &&
 		pathname.startsWith("/dashboard") &&
-		tabsData[session.role].every((tab) => tab.href !== pathname)
+		tabsData[session.role].every((tab) => !pathname.startsWith(tab.href))
 	) {
 		return NextResponse.redirect(new URL("/dashboard/overview", req.nextUrl));
 	}

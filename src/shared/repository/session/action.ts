@@ -7,6 +7,8 @@ import { getSession } from "../session-manager/action";
 import type {
 	AcceptSessionRequest,
 	EditSessionRequest,
+	GetSessionAttendeesResponse,
+	GetSessionAttendeesquery,
 	GetSessionResponse,
 	GetSessionsQuery,
 	GetSessionsResponse,
@@ -19,7 +21,7 @@ export async function getSessions(
 	const url = new URL(`${env.API_URL}/sessions`);
 
 	for (const [key, value] of Object.entries(query)) {
-		if (value !== undefined && value !== "") {
+		if (value !== undefined && value !== null) {
 			if (Array.isArray(value)) {
 				url.searchParams.append(key, value.join(","));
 			} else {
@@ -59,6 +61,39 @@ export async function getSessionEvent(
 	});
 
 	return handleResponse<GetSessionResponse>("Get session", res);
+}
+
+export async function getSessionAttendees(
+	sessionId: string,
+	query: GetSessionAttendeesquery,
+): Promise<GlobalResponse<GetSessionAttendeesResponse>> {
+	const url = new URL(`${env.API_URL}/sessions/${sessionId}/attendees`);
+
+	for (const [key, value] of Object.entries(query)) {
+		if (value !== undefined && value !== null) {
+			if (Array.isArray(value)) {
+				url.searchParams.append(key, value.join(","));
+			} else {
+				url.searchParams.append(key, value.toString());
+			}
+		}
+	}
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+	});
+
+	return handleResponse<GetSessionAttendeesResponse>(
+		"Get session attendees",
+		res,
+	);
 }
 
 export async function createSession(
@@ -180,4 +215,29 @@ export async function registerSession(
 	});
 
 	return handleResponse<null>("Register session", res);
+}
+
+export async function deleteReviewSession(
+	sessionId: string,
+	userId: string,
+): Promise<GlobalResponse<null>> {
+	const url = new URL(
+		`${env.API_URL}/sessions/${sessionId}/reviews/${userId}/remove`,
+	);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+		body: JSON.stringify({
+			reason: "Spam",
+		}),
+	});
+
+	return handleResponse<null>("Delete review session", res);
 }
