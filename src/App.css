@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+} 
+
+.App_header {
+  background-color: #2C2F33;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #FFFFFF;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.moviecontainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #2C2F33;
+  gap: 20px;
+}
+
+.moviewrapper {
+  width: 250px;
+  background-color: #E74C3C;
+  color: #FFFFFF;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.moviesearch {
+  height: 15px;
+  font-size: 24px;
+  margin-bottom: 40px;
+  padding: 16px;
+  width: 300px;
+}
+
+.movietitle {
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.movieimage {
+  width: 250px;
+}
+
+.movietanggal {
+  font-size: 17px;
+  margin-top: 3px;
+  color: #FFDD57;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.moviebintang {
+  font-size: medium;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-style: italic;
+  color: #FFDD57;
+}
