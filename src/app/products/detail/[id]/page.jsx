@@ -8,6 +8,7 @@ import {
 const page = async ({ params }) => {
   const { id } = await params;
   const detailProduct = await fetchProductById(id);
+  console.log(detailProduct.category);
   let youMayLikeProduct = await fetchProductByCategory(detailProduct.category);
   youMayLikeProduct = youMayLikeProduct.slice(0, 4);
   return (

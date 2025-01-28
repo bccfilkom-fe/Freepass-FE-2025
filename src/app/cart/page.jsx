@@ -7,8 +7,13 @@ import { CartContext } from "@/context/CartContext";
 import { useContext } from "react";
 
 const Page = () => {
-  const { cart, incrementItemQuantity, decrementItemQuantity, removeCartItem } =
-    useContext(CartContext);
+  const {
+    cart,
+    incrementItemQuantity,
+    decrementItemQuantity,
+    removeCartItem,
+    clearCart,
+  } = useContext(CartContext);
   const totalItems = cart.reduce((total, item) => total + item.amount, 0);
   const subTotal = cart.reduce(
     (total, item) => total + item.product.price * item.amount,
@@ -48,6 +53,7 @@ const Page = () => {
             subTotal={subTotal}
             shippingFee={shippingFee}
             finalPrice={(subTotal + shippingFee).toFixed(2)}
+            checkout={clearCart}
           />
         </section>
       )}

@@ -16,3 +16,8 @@ body {
 .hover-animation {
   @apply hover:scale-110 hover:bg-slate-200 transition-all;
 }
+
+::placeholder {
+  color: initial;
+  opacity: initial;
+}

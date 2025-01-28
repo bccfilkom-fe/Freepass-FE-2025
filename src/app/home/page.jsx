@@ -18,11 +18,11 @@ const HomePage = async () => {
       <Hero />
       <CategoryList />
       <ProductHighlight product={topRatedProducts} title={"Best seller"} />
-      <section className="md:flex mt-32 gap-10 ">
+      <section className="md:flex mt-16 gap-10 ">
         <div className="md:w-1/3 w-full">
           <Ads />
         </div>
-        <div className="md:w-2/3 mt-10 md:mt-0">
+        <div className="md:w-2/3 mt-10 md:mt-">
           <JeweleryAds />
           <ElectronicAds />
         </div>
