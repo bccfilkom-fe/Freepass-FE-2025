@@ -162,3 +162,22 @@ export async function rejectSessionProposal(
 
 	return handleResponse<null>("Reject session proposal", res);
 }
+
+export async function registerSession(
+	sessionId: string,
+): Promise<GlobalResponse<null>> {
+	const url = new URL(`${env.API_URL}/sessions/${sessionId}/register`);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+	});
+
+	return handleResponse<null>("Register session", res);
+}

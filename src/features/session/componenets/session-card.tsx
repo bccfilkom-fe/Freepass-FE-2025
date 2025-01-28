@@ -1,16 +1,31 @@
 import { Armchair, ClockIcon, MapPinIcon } from "lucide-react";
 import Link from "next/link";
+import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
 import { formatDates } from "../../../shared/lib/date-formatter";
 import { SessionTagMap, SessionTypeMap } from "../../../shared/lib/map-data";
 import type { SessionResponse } from "../../../shared/repository/session/dto";
+import { useRegisterSessionMutation } from "../../../shared/repository/session/query";
+import RegisterSessionAlert from "./regsiter-session-alert";
 
 type Prop = {
 	session: SessionResponse;
 };
 
 export default function SessionCard({ session }: Prop) {
+	const { openAlertDialog } = useAlertDialogStore();
+
+	const { mutate: registerSession } = useRegisterSessionMutation(session.id);
+
 	return (
-		<div className="w-full h-min border-2 rounded-lg flex-shrink-0 flex flex-col gap-2 p-4 hover:bg-muted transition-all duration-300 ease-in-out hover:cursor-pointer">
+		<div
+			className="w-full h-min border-2 rounded-lg flex-shrink-0 flex flex-col gap-2 p-4 hover:bg-muted transition-all duration-300 ease-in-out hover:cursor-pointer"
+			onClick={() =>
+				openAlertDialog({
+					children: <RegisterSessionAlert onAction={registerSession} />,
+				})
+			}
+			onKeyDown={() => {}}
+		>
 			<div className="flex flex-row justify-between items-center">
 				<h3 className="text-xl font-semibold">
 					{session.title}{" "}

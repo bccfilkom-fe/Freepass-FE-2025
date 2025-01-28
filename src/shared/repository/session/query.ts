@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useAlertDialogStore } from "../../hooks/use-alert-dialog";
 import { useDialogStore } from "../../hooks/use-dialog";
 import { useSheetStore } from "../../hooks/use-sheet";
 import {
@@ -12,6 +13,7 @@ import {
 	editSession,
 	getSessionEvent,
 	getSessions,
+	registerSession,
 	rejectSessionProposal,
 } from "./action";
 import type {
@@ -153,6 +155,24 @@ export const useRejectSessionProposalMutation = (id: string) => {
 		onSuccess: (data) => {
 			toast.success(data.message);
 			closeDialog();
+			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useRegisterSessionMutation = (id: string) => {
+	const queryClient = useQueryClient();
+	const { closeAlertDialog } = useAlertDialogStore();
+
+	return useMutation({
+		mutationKey: ["session"],
+		mutationFn: () => registerSession(id),
+		onSuccess: (data) => {
+			toast.success(data.message);
+			closeAlertDialog();
 			queryClient.invalidateQueries({ queryKey: ["session"] });
 		},
 		onError: (error) => {
