@@ -37,9 +37,6 @@ export default function SessionCard({ session }: Prop) {
 						)
 					</span>
 				</h3>
-				<div className="px-4 py-2 rounded-lg border text-xs bg-green-600 text-white">
-					<span>Joined</span>
-				</div>
 			</div>
 			<p className="w-full text-wrap text-xs text-muted-foreground">
 				{session.description}
