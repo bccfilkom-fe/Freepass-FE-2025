@@ -1,12 +1,12 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Adjust as needed
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useDebounce from "./use-debounce";
 
 export default function usePagination() {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
-
+	const isInitializedRef = useRef(false); // Ref to track if the component has been initialized
 	// Initial state based on URL search parameters
 	const [paginationState, setPaginationState] = useState(() => ({
 		pageIndex: searchParams.get("page")
@@ -59,6 +59,11 @@ export default function usePagination() {
 
 	// Effect to update the query string when the debounced search changes
 	useEffect(() => {
+		if (!isInitializedRef.current) {
+			isInitializedRef.current = true;
+			return;
+		}
+
 		updateQueryString({
 			search: debouncedSearch,
 			page: "1", // Reset to the first page

@@ -1,6 +1,6 @@
+import SearchInput from "../../../shared/components/search-input";
 import usePagination from "../../../shared/hooks/use-pagination";
 import { useGetSessionAttendeesQuery } from "../../../shared/repository/session/query";
-import SearchAttendeeInput from "../components/search-attendee-input";
 import SessionAttendeeTable from "../components/session-attendee-table";
 
 type Prop = {
@@ -8,8 +8,8 @@ type Prop = {
 };
 
 export default function SessionAttendeesTableContainer({ id }: Prop) {
-	const { data, isLoading } = useGetSessionAttendeesQuery(id);
 	const pagination = usePagination();
+	const { data, isLoading } = useGetSessionAttendeesQuery(id);
 
 	if (isLoading || !data) {
 		return <div>Loading...</div>;
@@ -17,7 +17,11 @@ export default function SessionAttendeesTableContainer({ id }: Prop) {
 
 	return (
 		<div className="space-y-2">
-			<SearchAttendeeInput handleSearch={pagination.handleSearch} />
+			<SearchInput
+				handleSearch={pagination.handleSearch}
+				value={pagination.paginationState.search}
+				placeholder="Search session attendees..."
+			/>
 			{isLoading ? (
 				<div>Loading...</div>
 			) : data ? (
