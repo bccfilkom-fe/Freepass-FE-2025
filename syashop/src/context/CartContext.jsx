@@ -6,10 +6,9 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-  console.log(cart);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
+    const storedCart = sessionStorage.getItem("cart");
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
@@ -38,31 +37,39 @@ const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    sessionStorage.removeItem("cart");
+    localStorage.removeItem("cart");
   };
-  const updateCartItemAmount = (id, newAmount) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.product.id === id ? { ...item, amount: newAmount } : item
-      )
-    );
-  };
+
   const removeCartItem = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.product.id !== id));
   };
 
-  const totalItems = () => {
-    return cart.reduce((acc, item) => acc + item.amount, 0);
+  const incrementItemQuantity = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.product.id === id ? { ...item, amount: item.amount + 1 } : item
+      )
+    );
   };
 
+  const decrementItemQuantity = (id) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.product.id === id
+          ? { ...item, amount: Math.max(item.amount - 1, 1) }
+          : item
+      )
+    );
+  };
   return (
     <CartContext.Provider
       value={{
-        totalItems,
+        cart,
         addToCart,
         clearCart,
-        updateCartItemAmount,
         removeCartItem,
+        incrementItemQuantity,
+        decrementItemQuantity,
       }}
     >
       {children}

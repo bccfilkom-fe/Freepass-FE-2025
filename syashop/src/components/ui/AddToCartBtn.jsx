@@ -2,12 +2,21 @@
 
 import { CartContext } from "@/context/CartContext";
 import React, { useState, useContext } from "react";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ToastSuccess from "../alert/Succes";
 const AddToCartBtn = ({ product }) => {
   const { addToCart, clearCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
   const handleAddToCart = () => {
+    setLoading(true);
     addToCart(product, quantity);
+
+    setTimeout(() => {
+      setLoading(false);
+      ToastSuccess();
+    }, 1000);
   };
 
   const increaseQuantity = () => {
@@ -42,11 +51,13 @@ const AddToCartBtn = ({ product }) => {
         </div>
       </div>
       <button
-        className=" w-full text-white font-semibold text-xl rounded-md bg-primary"
+        className=" w-full active:scale-105 transition-all py-2 text-white font-semibold text-xl rounded-md bg-primary"
         onClick={handleAddToCart}
+        disabled={loading}
       >
-        Add to Cart
+        {loading ? "Adding..." : "Add to Cart"}
       </button>
+      <ToastContainer />
     </div>
   );
 };
