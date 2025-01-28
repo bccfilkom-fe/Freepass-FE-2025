@@ -1,8 +1,11 @@
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const currentDeploymentUrl = process.env.VERCEL_URL;
 
 export async function fetchProducts() {
   try {
-    const response = await fetch(`${baseURL}/api/products`);
+    const response = await fetch(
+      `${baseURL || currentDeploymentUrl}/api/products`
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }
@@ -14,9 +17,12 @@ export async function fetchProducts() {
     throw error;
   }
 }
+
 export async function fetchProductById(id) {
   try {
-    const response = await fetch(`${baseURL}/api/products/${id}`);
+    const response = await fetch(
+      `${baseURL || currentDeploymentUrl}/api/products/${id}`
+    );
     if (!response.ok) {
       throw new Error(`Failed to fetch product with ID ${id}`);
     }
@@ -30,7 +36,9 @@ export async function fetchProductById(id) {
 
 export async function fetchProductByCategory(category) {
   try {
-    const response = await fetch(`${baseURL}/api/category/${category}`);
+    const response = await fetch(
+      `${baseURL || currentDeploymentUrl}/api/category/${category}`
+    );
     if (!response.ok) {
       throw new Error(`Failed to fetch product with category ${category}`);
     }
