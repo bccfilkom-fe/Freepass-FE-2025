@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <nav className=" w-full h-12 mt-4 grid-cols-3  flex items-center justify-between">
-      <h1 className="font-bold text-3xl w-1/4 ">syashop</h1>
+      <h1 className="font-bold text-3xl w-1/4 text-primary ">syashop</h1>
       <ul className=" gap-4 text-xl justify-center w-2/4 lg:flex hidden">
         {NavLink.map((item, index) => (
           <li

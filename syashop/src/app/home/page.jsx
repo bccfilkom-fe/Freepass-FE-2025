@@ -1,5 +1,8 @@
+import Ads from "@/components/section/Ads";
 import CategoryList from "@/components/section/CategoryList";
+import ElectronicAds from "@/components/section/ElectronicAds";
 import Hero from "@/components/section/Hero";
+import JeweleryAds from "@/components/section/JeweleryAds";
 import ProductHighlight from "@/components/section/ProductHighlight";
 import { fetchProducts } from "@/services/fetchProduct";
 
@@ -15,7 +18,15 @@ const HomePage = async () => {
       <Hero />
       <CategoryList />
       <ProductHighlight product={topRatedProducts} title={"Best seller"} />
-      <div className="h-96"></div>
+      <section className="md:flex mt-32 gap-10 ">
+        <div className="md:w-1/3 w-full">
+          <Ads />
+        </div>
+        <div className="md:w-2/3 mt-10 md:mt-0">
+          <JeweleryAds />
+          <ElectronicAds />
+        </div>
+      </section>
     </main>
   );
 };

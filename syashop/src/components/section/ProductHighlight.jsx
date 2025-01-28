@@ -18,7 +18,7 @@ const ProductHighlight = ({ product, title, category }) => {
           </Link>
         )}
       </div>
-      <section className="w-full h-[33rem] 2xl:h-[35rem] lg:h-[28rem]">
+      <section className="w-full h-[33rem] 2xl:h-[32rem] lg:h-[28rem]">
         <Swiper
           spaceBetween={50}
           loop={true}

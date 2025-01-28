@@ -1,8 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import localFont from "next/font/local";
 import Navbar from "../components/navbar/Navbar";
 import CartProvider from "@/context/CartContext";
+import Footer from "@/components/section/Footer";
 const gilroy = localFont({
   src: [
     {
@@ -52,6 +52,7 @@ export default function RootLayout({ children }) {
         <CartProvider>
           <Navbar />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>

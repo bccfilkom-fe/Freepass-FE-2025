@@ -1,5 +1,5 @@
 export async function GET(req, { params }) {
-  const { categoryname } = params;
+  const { categoryname } = await params;
   try {
     const response = await fetch(
       `https://fakestoreapi.com/products/category/${categoryname}`
