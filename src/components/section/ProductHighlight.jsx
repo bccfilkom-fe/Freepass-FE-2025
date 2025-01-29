@@ -13,7 +13,7 @@ const ProductHighlight = ({ product, title, category }) => {
       <div className="flex justify-between items-center">
         <h2 className="">{title}</h2>
         {category && (
-          <Link href={`/category/${category}`} className="font-light text-lg">
+          <Link href={`/${category}`} className="font-light text-lg">
             See More
           </Link>
         )}
