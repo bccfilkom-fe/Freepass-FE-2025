@@ -17,7 +17,7 @@ const HomePage = async () => {
   return (
     <main className="mt-4">
       <Hero />
-      <CategoryNavbar />
+      <CategoryList />
       <ProductHighlight product={topRatedProducts} title={"Best seller"} />
       <section className="md:flex mt-16 gap-10 ">
         <div className="md:w-1/3 w-full">

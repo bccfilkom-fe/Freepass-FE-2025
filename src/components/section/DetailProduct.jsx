@@ -24,7 +24,9 @@ const DetailProduct = ({ product }) => {
               <Heart className="bg-slate-50" />
             </span>
           </div>
-
+          <span className="text-2xl lg:text-lg xl:text-2xl font-bold">
+            {product.title}
+          </span>
           <div className="flex justify-between lg:flex-col ">
             <div>
               <span className="flex  gap-2 my-2 items-center font-semibold ">
