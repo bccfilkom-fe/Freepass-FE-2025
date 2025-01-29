@@ -5,6 +5,7 @@ import EmptyCart from "@/components/section/EmptyCart";
 import Payment from "@/components/section/Payment";
 import { CartContext } from "@/context/CartContext";
 import { useContext } from "react";
+import { ToastContainer } from "react-toastify";
 
 const Page = () => {
   const {

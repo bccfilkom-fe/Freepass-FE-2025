@@ -4,9 +4,9 @@ import { CartContext } from "@/context/CartContext";
 import React, { useState, useContext, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ToastSuccess from "../alert/Succes";
 import Cookies from "js-cookie";
-import ToastFailed from "../alert/Failed";
+import ToastSuccess from "../alert/ToastSucces";
+import ToastFailed from "../alert/ToastFailed";
 
 const AddToCartBtn = ({ product }) => {
   const { addToCart } = useContext(CartContext);
