@@ -1,4 +1,4 @@
-import Provider from "@/shared/components/ui/providers";
+import Provider from "@/shared/components/providers";
 import { fontsVariables } from "@/shared/lib/fonts";
 import "@/shared/styles/globals.css";
 
