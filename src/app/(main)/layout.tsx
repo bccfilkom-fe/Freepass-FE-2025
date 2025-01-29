@@ -8,9 +8,7 @@ export default function Layout({
 	return (
 		<section className="flex flex-col h-screen">
 			<Header />
-			<div className="flex flex-col container mx-auto px-4 py-20 lg:py-40">
-				{children}
-			</div>
+			<div className="flex flex-col container mx-auto px-4">{children}</div>
 		</section>
 	);
 }
