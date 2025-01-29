@@ -17,6 +17,7 @@ import {
 	getSessions,
 	registerSession,
 	rejectSessionProposal,
+	reviewSession,
 } from "./action";
 import type {
 	AcceptSessionRequest,
@@ -24,12 +25,15 @@ import type {
 	GetSessionAttendeesquery,
 	GetSessionsQuery,
 	RejectSessionRequest,
+	ReviewSessionRequest,
 } from "./dto";
 
 export const useSessionsQuery = ({
 	status,
+	user_id,
 }: {
 	status: GetSessionsQuery["status"];
+	user_id?: GetSessionsQuery["user_id"];
 }) => {
 	const searchParams = useSearchParams();
 
@@ -49,7 +53,7 @@ export const useSessionsQuery = ({
 	const proposer_id = searchParams.get("proposer_id") || undefined;
 
 	return useQuery({
-		queryKey: ["session", page, limit, search, status],
+		queryKey: ["session", page, limit, search, status, { user_id }],
 		queryFn: () =>
 			getSessions({
 				search,
@@ -63,6 +67,7 @@ export const useSessionsQuery = ({
 				after_at,
 				status,
 				proposer_id,
+				user_id,
 			}),
 	});
 };
@@ -192,6 +197,19 @@ export const useRegisterSessionMutation = (id: string) => {
 			toast.success(data.message);
 			closeAlertDialog();
 			queryClient.invalidateQueries({ queryKey: ["session"] });
+		},
+		onError: (error) => {
+			toast.error(error.message);
+		},
+	});
+};
+
+export const useReviewSessionMutation = (sessionId: string) => {
+	return useMutation({
+		mutationKey: ["session", sessionId, "review"],
+		mutationFn: (data: ReviewSessionRequest) => reviewSession(sessionId, data),
+		onSuccess: (data) => {
+			toast.success(data.message);
 		},
 		onError: (error) => {
 			toast.error(error.message);

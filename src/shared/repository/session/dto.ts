@@ -50,6 +50,7 @@ export type GetSessionsQuery = {
 	after_at?: string; // iso string
 	status: keyof typeof SessionStatusMap;
 	proposer_id?: string;
+	user_id?: string;
 };
 
 export type GetSessionResponse = {
@@ -169,3 +170,9 @@ export const RejectSessionSchema = z.object({
 });
 
 export type RejectSessionRequest = z.infer<typeof RejectSessionSchema>;
+
+export const ReviewSessionSchema = z.object({
+	review: z.string().min(3).max(255),
+});
+
+export type ReviewSessionRequest = z.infer<typeof ReviewSessionSchema>;

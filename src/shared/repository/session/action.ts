@@ -13,6 +13,7 @@ import type {
 	GetSessionsQuery,
 	GetSessionsResponse,
 	RejectSessionRequest,
+	ReviewSessionRequest,
 } from "./dto";
 
 export async function getSessions(
@@ -120,12 +121,13 @@ export async function editSession(
 	data: EditSessionRequest,
 	sessionId: string,
 ): Promise<GlobalResponse<null>> {
+	console.log(data);
 	const url = new URL(`${env.API_URL}/sessions/${sessionId}`);
 
 	const session = await getSession();
 
 	const res = await fetch(url.toString(), {
-		method: "PUT",
+		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
 			"x-api-key": env.API_KEY,
@@ -215,6 +217,27 @@ export async function registerSession(
 	});
 
 	return handleResponse<null>("Register session", res);
+}
+
+export async function reviewSession(
+	sessionId: string,
+	data: ReviewSessionRequest,
+): Promise<GlobalResponse<null>> {
+	const url = new URL(`${env.API_URL}/sessions/${sessionId}/reviews`);
+
+	const session = await getSession();
+
+	const res = await fetch(url.toString(), {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"x-api-key": env.API_KEY,
+			Authorization: `Bearer ${session.token}`,
+		},
+		body: JSON.stringify(data),
+	});
+
+	return handleResponse<null>("Review session", res);
 }
 
 export async function deleteReviewSession(
