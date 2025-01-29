@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SessionList from "../../../features/session/componenets/session-list";
 
 export default function Page() {
@@ -6,7 +7,9 @@ export default function Page() {
 			<h1 className="text-5xl md:text-7xl tracking-tighter text-center">
 				Join a Session
 			</h1>
-			<SessionList />
+			<Suspense>
+				<SessionList />
+			</Suspense>
 		</main>
 	);
 }

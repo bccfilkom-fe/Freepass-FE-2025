@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MySessionContainer from "../../../../features/my-session/container/my-session-list-container";
 
 export default function Page() {
@@ -7,7 +8,9 @@ export default function Page() {
 				<h2 className="text-2xl font-bold">Session</h2>
 			</div>
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-				<MySessionContainer />
+				<Suspense>
+					<MySessionContainer />
+				</Suspense>
 			</div>
 		</section>
 	);

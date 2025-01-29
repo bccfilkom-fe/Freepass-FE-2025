@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SessionsTableContainer from "../../../../features/session-management/container/sessions-table-container";
 
 export default function Page() {
@@ -7,7 +8,9 @@ export default function Page() {
 				<h2 className="text-2xl font-bold">Sesion Management</h2>
 			</div>
 			<div className="flex flex-col gap-4">
-				<SessionsTableContainer />
+				<Suspense>
+					<SessionsTableContainer />
+				</Suspense>
 			</div>
 		</section>
 	);

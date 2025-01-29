@@ -5,6 +5,7 @@ import ProposalList from "@/features/proposal/components/proposal-list";
 import { Button } from "@/shared/components/ui/button";
 import { useSheetStore } from "@/shared/hooks/use-sheet";
 import { PlusIcon } from "lucide-react";
+import { Suspense } from "react";
 
 export default function Page() {
 	const { openSheet } = useSheetStore();
@@ -18,7 +19,9 @@ export default function Page() {
 				</Button>
 			</div>
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-				<ProposalList />
+				<Suspense>
+					<ProposalList />
+				</Suspense>
 			</div>
 		</section>
 	);

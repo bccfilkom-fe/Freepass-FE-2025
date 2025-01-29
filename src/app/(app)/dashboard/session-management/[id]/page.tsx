@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { Suspense, use } from "react";
 import SessionAttendeesTableContainer from "../../../../../features/session-management/container/session-attendees-table-container";
 import SessionCardContainer from "../../../../../features/session-management/container/session-card-container";
 
@@ -17,8 +17,10 @@ export default function Page({
 				<h2 className="text-2xl font-bold">Sesion Management</h2>
 			</div>
 			<div className="flex flex-col gap-4">
-				<SessionCardContainer id={params.id} />
-				<SessionAttendeesTableContainer id={params.id} />
+				<Suspense>
+					<SessionCardContainer id={params.id} />
+					<SessionAttendeesTableContainer id={params.id} />
+				</Suspense>
 			</div>
 		</section>
 	);
