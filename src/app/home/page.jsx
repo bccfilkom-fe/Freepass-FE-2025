@@ -1,3 +1,4 @@
+import CategoryNavbar from "@/components/navbar/CategoryNavbar";
 import Ads from "@/components/section/Ads";
 import CategoryList from "@/components/section/CategoryList";
 import ElectronicAds from "@/components/section/ElectronicAds";
@@ -16,7 +17,7 @@ const HomePage = async () => {
   return (
     <main className="mt-4">
       <Hero />
-      <CategoryList />
+      <CategoryNavbar />
       <ProductHighlight product={topRatedProducts} title={"Best seller"} />
       <section className="md:flex mt-16 gap-10 ">
         <div className="md:w-1/3 w-full">

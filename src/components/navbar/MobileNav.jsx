@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LoginBtn from "../ui/LoginBtn";
+import LogOutBtn from "../ui/LogOutBtn";
 
 const NavLink = [
   { name: "Home", link: "/home" },
@@ -40,6 +41,7 @@ const MobileNav = () => {
             <h5>Welcome Back !</h5>
             <h5 className="font-semibold">{username}</h5>
           </div>
+          <LogOutBtn />
         </div>
       ) : (
         <LoginBtn />

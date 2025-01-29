@@ -12,7 +12,7 @@ const CategoryPage = async ({ params }) => {
   }
   console.log(products);
   return (
-    <main className=" font-semibold md:mt-6 mt-28 w-full">
+    <main className=" font-semibold md:mt-6 mt-10 w-full">
       <div className="md:flex md:mb-1 mb-4 justify-between text-sm font-light">
         <h4 className="font-bold text-xl">Products &gt; {category}</h4>
         <Link className="flex gap-1 items-center" href={"/products"}>

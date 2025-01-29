@@ -32,7 +32,7 @@ const CategoryList = async () => {
         {CategoryItem.map((item, index) => (
           <li key={index}>
             <Link
-              className="border-2 hover-animation font-semibold text-sm items-center rounded-lg shadow-sm px-2 py-2 flex gap-2"
+              className="border-2 hover-animation font-semibold text-xs lg:text-sm items-center rounded-lg shadow-sm px-2 py-2 flex gap-2"
               href={`products/${item.link}`}
             >
               {item.icon}
