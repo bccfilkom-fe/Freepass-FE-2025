@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+.hero-img {
+  background-image: url("../assets/img/HeroImg.png");
+}
+
+.hover-animation {
+  @apply hover:scale-110 hover:bg-slate-200 transition-all;
+}
+
+::placeholder {
+  color: initial;
+  opacity: initial;
+}
