@@ -11,7 +11,6 @@ import Link from "next/link";
 const footerLink = [
   { name: "Home", link: "/home" },
   { name: "Products", link: "/products" },
-  { name: "Category", link: "/category" },
 ];
 
 const Footer = () => {
