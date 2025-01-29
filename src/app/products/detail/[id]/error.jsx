@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import EmptyBox from "../../../../../public/EmptyBox.png";
+import EmptyBox from "@/assets/img/EmptyBox.png";
 import Link from "next/link";
 const error = ({ error }) => {
   return (

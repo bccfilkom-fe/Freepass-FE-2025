@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ToastSuccess = () => {
-  toast.success("Item added to your cart ", {
+const ToastSuccess = (title) => {
+  toast.success(title, {
     position: "top-right",
     autoClose: 700,
     pauseOnFocusLoss: false,

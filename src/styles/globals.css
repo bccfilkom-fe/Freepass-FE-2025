@@ -10,7 +10,7 @@ body {
 }
 
 .hero-img {
-  background-image: url("../../public/HeroImg.png");
+  background-image: url("../assets/img/HeroImg.png");
 }
 
 .hover-animation {

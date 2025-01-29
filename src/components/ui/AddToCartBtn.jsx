@@ -20,7 +20,7 @@ const AddToCartBtn = ({ product }) => {
 
   const handleAddToCart = () => {
     if (!token) {
-      ToastFailed();
+      ToastFailed("You need to login first");
       return;
     }
 
@@ -29,7 +29,7 @@ const AddToCartBtn = ({ product }) => {
     setTimeout(() => {
       setLoading(false);
       addToCart(product, quantity);
-      ToastSuccess();
+      ToastSuccess("Item added to your cart");
     }, 1000);
   };
 

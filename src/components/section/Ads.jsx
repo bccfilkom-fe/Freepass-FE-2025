@@ -1,5 +1,5 @@
 import React from "react";
-import PersonBox from "../../../public/PersonBox.png";
+import PersonBox from "@/assets/img/PersonBox.png";
 import Image from "next/image";
 const Ads = () => {
   return (

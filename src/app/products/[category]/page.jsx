@@ -1,12 +1,16 @@
 import Card from "@/components/ui/Card";
 import { fetchProductByCategory } from "@/services/fetchProduct";
 import { Cross } from "lucide-react";
+import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
 
 const CategoryPage = async ({ params }) => {
   const { category } = await params;
   const products = await fetchProductByCategory(category);
-
+  if (products.length === 0) {
+    throw new Error("No products found");
+  }
+  console.log(products);
   return (
     <main className=" font-semibold md:mt-6 mt-28 w-full">
       <div className="md:flex md:mb-1 mb-4 justify-between text-sm font-light">

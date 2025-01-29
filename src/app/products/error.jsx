@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import EmptyBox from "../../../../../public/EmptyBox.png";
-import Link from "next/link";
+import EmptyBox from "@/assets/img/EmptyBox.png";
+
 const error = () => {
   return (
     <div className="w-full h-96 mt-24 lg:mt-0 flex items-center flex-col justify-center">

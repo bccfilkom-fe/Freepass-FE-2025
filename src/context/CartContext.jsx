@@ -1,22 +1,34 @@
 "use client";
 
 import React, { createContext, useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const storedCart = sessionStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
+    const token = Cookies.get("token");
+    const storedUsername = Cookies.get("username");
+    setIsLoggedIn(!!token);
+    setUsername(storedUsername || "");
+
+    if (token && storedUsername) {
+      const storedCart = sessionStorage.getItem(`cart_${storedUsername}`);
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
     }
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    if (isLoggedIn && username) {
+      sessionStorage.setItem(`cart_${username}`, JSON.stringify(cart));
+    }
+  }, [cart, isLoggedIn, username]);
 
   const addToCart = (product, qty) => {
     const cartItem = cart.find((item) => item.product.id === product.id);
@@ -37,7 +49,9 @@ const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("cart");
+    if (username) {
+      sessionStorage.removeItem(`cart_${username}`);
+    }
   };
 
   const removeCartItem = (id) => {
@@ -61,6 +75,7 @@ const CartProvider = ({ children }) => {
       )
     );
   };
+
   return (
     <CartContext.Provider
       value={{
@@ -70,6 +85,7 @@ const CartProvider = ({ children }) => {
         removeCartItem,
         incrementItemQuantity,
         decrementItemQuantity,
+        isLoggedIn,
       }}
     >
       {children}

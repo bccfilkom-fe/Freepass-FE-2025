@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Mercusuar from "../../public/Mercusuar.png";
+import Mercusuar from "@/assets/img/Mercusuar.png";
 import Link from "next/link";
 
 const notFound = () => {

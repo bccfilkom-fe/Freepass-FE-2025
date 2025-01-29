@@ -1,5 +1,5 @@
 import React from "react";
-import Watch from "../../../public/Watch.png";
+import Watch from "@/assets/img/Watch.png";
 import Image from "next/image";
 import Link from "next/link";
 const JeweleryAds = () => {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Tv from "../../../public/Tv.png";
+import Tv from "@/assets/img/Tv.png";
 
 const ElectronicAds = () => {
   return (

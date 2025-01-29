@@ -1,6 +1,6 @@
 import { ShoppingBasket } from "lucide-react";
 import React from "react";
-import Cart from "../../../public/Cart.png";
+import Cart from "@/assets/img/Cart.png";
 import Image from "next/image";
 import Link from "next/link";
 const EmptyCart = () => {

@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ToastFailed = () => {
-  toast.error("You need to login first ", {
+const ToastFailed = (title) => {
+  toast.error(title, {
     position: "top-right",
     autoClose: 700,
     pauseOnFocusLoss: false,
