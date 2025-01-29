@@ -1,7 +1,7 @@
+import { useSheetStore } from "@/shared/hooks/use-sheet";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { useSheetStore } from "../../hooks/use-sheet";
 import { createUser, deleteUser, getUsers } from "./action";
 import type { CreateUserRequest, GetUsersQuery } from "./dto";
 

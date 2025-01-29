@@ -1,10 +1,10 @@
-import { z } from "zod";
 import {
 	type SessionStatusMap,
 	SessionTagMap,
 	type SessionTypeMap,
-} from "../../lib/map-data";
-import type { PaginationResponse } from "../../types/response";
+} from "@/shared/lib/map-data";
+import type { PaginationResponse } from "@/shared/types/response";
+import { z } from "zod";
 import type { UserResponse } from "../user/dto";
 
 export type SessionResponse = {

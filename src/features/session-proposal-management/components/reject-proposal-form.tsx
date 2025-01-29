@@ -1,4 +1,4 @@
-import { Button } from "../../../shared/components/ui/button";
+import { Button } from "@/shared/components/ui/button";
 import {
 	Form,
 	FormControl,
@@ -6,8 +6,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../shared/components/ui/form";
-import { Textarea } from "../../../shared/components/ui/textarea";
+} from "@/shared/components/ui/form";
+import { Textarea } from "@/shared/components/ui/textarea";
 import { useRejectProposalForm } from "../hooks/use-reject-proposal-form";
 
 type Prop = {

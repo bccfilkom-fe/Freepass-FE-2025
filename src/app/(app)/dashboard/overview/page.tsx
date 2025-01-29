@@ -1,5 +1,4 @@
-import { useId } from "react";
-import { Card, CardContent } from "../../../../shared/components/ui/card";
+import { Card, CardContent } from "@/shared/components/ui/card";
 
 export default function Page() {
 	return (

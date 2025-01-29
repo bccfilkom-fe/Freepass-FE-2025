@@ -7,7 +7,7 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 } from "@/shared/components/ui/alert-dialog";
-import { useDeleteSessionMutation } from "../../../shared/repository/session/query";
+import { useDeleteSessionMutation } from "@/shared/repository/session/query";
 
 type Prop = {
 	id: string;

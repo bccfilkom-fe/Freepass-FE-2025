@@ -1,5 +1,5 @@
+import MySessionContainer from "@/features/my-session/container/my-session-list-container";
 import { Suspense } from "react";
-import MySessionContainer from "../../../../features/my-session/container/my-session-list-container";
 
 export default function Page() {
 	return (

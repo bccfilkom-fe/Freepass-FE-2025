@@ -1,19 +1,7 @@
 "use client";
 
-import { Checkbox } from "../../../shared/components/ui/checkbox";
-import {
-	DateField,
-	DateInput,
-} from "../../../shared/components/ui/datefield-rac";
-import { Input } from "../../../shared/components/ui/input";
-import { Label } from "../../../shared/components/ui/label";
-import {
-	RadioGroup,
-	RadioGroupItem,
-} from "../../../shared/components/ui/radio-group";
-import { Skeleton } from "../../../shared/components/ui/skeleton";
-import { SessionTagMap } from "../../../shared/lib/map-data";
-import { useSessionsQuery } from "../../../shared/repository/session/query";
+import { Skeleton } from "@/shared/components/ui/skeleton";
+import { useSessionsQuery } from "@/shared/repository/session/query";
 import SessionCard from "./session-card";
 
 export default function SessionList() {

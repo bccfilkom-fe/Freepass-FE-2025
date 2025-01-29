@@ -1,6 +1,6 @@
-import SearchInput from "../../../shared/components/search-input";
-import usePagination from "../../../shared/hooks/use-pagination";
-import { useGetSessionAttendeesQuery } from "../../../shared/repository/session/query";
+import SearchInput from "@/shared/components/search-input";
+import usePagination from "@/shared/hooks/use-pagination";
+import { useGetSessionAttendeesQuery } from "@/shared/repository/session/query";
 import SessionAttendeeTable from "../components/session-attendee-table";
 
 type Prop = {

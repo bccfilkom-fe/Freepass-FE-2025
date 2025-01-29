@@ -1,5 +1,5 @@
+import SessionsTableContainer from "@/features/session-management/container/sessions-table-container";
 import { Suspense } from "react";
-import SessionsTableContainer from "../../../../features/session-management/container/sessions-table-container";
 
 export default function Page() {
 	return (

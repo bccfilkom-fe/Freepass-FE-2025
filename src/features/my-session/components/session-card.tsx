@@ -5,14 +5,11 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "../../../shared/components/ui/card";
-import { useDialogStore } from "../../../shared/hooks/use-dialog";
-import {
-	formatDates,
-	timeDifference,
-} from "../../../shared/lib/date-formatter";
-import { SessionTagMap, SessionTypeMap } from "../../../shared/lib/map-data";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
+} from "@/shared/components/ui/card";
+import { useDialogStore } from "@/shared/hooks/use-dialog";
+import { formatDates, timeDifference } from "@/shared/lib/date-formatter";
+import { SessionTagMap, SessionTypeMap } from "@/shared/lib/map-data";
+import type { SessionResponse } from "@/shared/repository/session/dto";
 import ReviewSessionDialog from "./review-session-dialog";
 
 type Props = {

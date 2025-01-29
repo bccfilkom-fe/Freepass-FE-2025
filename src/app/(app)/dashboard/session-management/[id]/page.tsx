@@ -1,8 +1,8 @@
 "use client";
 
+import SessionAttendeesTableContainer from "@/features/session-management/container/session-attendees-table-container";
+import SessionCardContainer from "@/features/session-management/container/session-card-container";
 import { Suspense, use } from "react";
-import SessionAttendeesTableContainer from "../../../../../features/session-management/container/session-attendees-table-container";
-import SessionCardContainer from "../../../../../features/session-management/container/session-card-container";
 
 export default function Page({
 	params: _params,

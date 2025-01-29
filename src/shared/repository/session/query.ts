@@ -1,11 +1,11 @@
 "use client";
 
+import { useAlertDialogStore } from "@/shared/hooks/use-alert-dialog";
+import { useDialogStore } from "@/shared/hooks/use-dialog";
+import { useSheetStore } from "@/shared/hooks/use-sheet";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { useAlertDialogStore } from "../../hooks/use-alert-dialog";
-import { useDialogStore } from "../../hooks/use-dialog";
-import { useSheetStore } from "../../hooks/use-sheet";
 import {
 	acceptSessionProposal,
 	createSession,

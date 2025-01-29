@@ -1,3 +1,21 @@
+import { Button } from "@/shared/components/ui/button";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/shared/components/ui/select";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/shared/components/ui/table";
+import type { SessionResponse } from "@/shared/repository/session/dto";
+import type { PaginationResponse } from "@/shared/types/response";
 import {
 	flexRender,
 	getCoreRowModel,
@@ -10,24 +28,6 @@ import {
 	ChevronsRight,
 } from "lucide-react";
 import { Fragment } from "react";
-import { Button } from "../../../shared/components/ui/button";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "../../../shared/components/ui/select";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "../../../shared/components/ui/table";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
-import type { PaginationResponse } from "../../../shared/types/response";
 import { proposalColumns } from "./proposal-columns";
 
 type Props = {

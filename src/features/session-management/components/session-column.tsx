@@ -1,11 +1,11 @@
 "use client";
 
+import { Button } from "@/shared/components/ui/button";
+import { formatDates } from "@/shared/lib/date-formatter";
 import type { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Button } from "../../../shared/components/ui/button";
-import { formatDates } from "../../../shared/lib/date-formatter";
 
 export type SessionColumns = {
 	id: string;

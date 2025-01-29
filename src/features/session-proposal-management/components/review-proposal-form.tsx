@@ -1,11 +1,6 @@
-import { parseAbsoluteToLocal } from "@internationalized/date";
-import { LoaderIcon } from "lucide-react";
-import { Button } from "../../../shared/components/ui/button";
-import { Checkbox } from "../../../shared/components/ui/checkbox";
-import {
-	DateField,
-	DateInput,
-} from "../../../shared/components/ui/datefield-rac";
+import { Button } from "@/shared/components/ui/button";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import { DateField, DateInput } from "@/shared/components/ui/datefield-rac";
 import {
 	Form,
 	FormControl,
@@ -13,13 +8,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../shared/components/ui/form";
-import { Input } from "../../../shared/components/ui/input";
-import { Textarea } from "../../../shared/components/ui/textarea";
-import { useDialogStore } from "../../../shared/hooks/use-dialog";
-import { useSheetStore } from "../../../shared/hooks/use-sheet";
-import { SessionTagMap } from "../../../shared/lib/map-data";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
+import { Textarea } from "@/shared/components/ui/textarea";
+import { useDialogStore } from "@/shared/hooks/use-dialog";
+import { useSheetStore } from "@/shared/hooks/use-sheet";
+import { SessionTagMap } from "@/shared/lib/map-data";
+import type { SessionResponse } from "@/shared/repository/session/dto";
+import { parseAbsoluteToLocal } from "@internationalized/date";
+import { LoaderIcon } from "lucide-react";
 import { useReviewProposalSessionForm } from "../hooks/use-review-proposal-form";
 import RejectProposalDialog from "./reject-proposal-dialog";
 

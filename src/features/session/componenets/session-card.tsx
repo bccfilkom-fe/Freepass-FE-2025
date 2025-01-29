@@ -1,10 +1,10 @@
+import { useAlertDialogStore } from "@/shared/hooks/use-alert-dialog";
+import { formatDates } from "@/shared/lib/date-formatter";
+import { SessionTagMap, SessionTypeMap } from "@/shared/lib/map-data";
+import type { SessionResponse } from "@/shared/repository/session/dto";
+import { useRegisterSessionMutation } from "@/shared/repository/session/query";
 import { Armchair, ClockIcon, MapPinIcon } from "lucide-react";
 import Link from "next/link";
-import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
-import { formatDates } from "../../../shared/lib/date-formatter";
-import { SessionTagMap, SessionTypeMap } from "../../../shared/lib/map-data";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
-import { useRegisterSessionMutation } from "../../../shared/repository/session/query";
 import RegisterSessionAlert from "./regsiter-session-alert";
 
 type Prop = {

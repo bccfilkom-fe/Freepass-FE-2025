@@ -1,5 +1,5 @@
+import Header from "@/features/landing/components/header";
 import { Suspense } from "react";
-import Header from "../../features/landing/components/header";
 
 export default function Layout({
 	children,

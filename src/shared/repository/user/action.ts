@@ -1,8 +1,8 @@
 "use server";
 
-import { env } from "../../lib/env";
-import { handleResponse } from "../../lib/response-handler";
-import type { GlobalResponse } from "../../types/response";
+import { env } from "@/shared/lib/env";
+import { handleResponse } from "@/shared/lib/response-handler";
+import type { GlobalResponse } from "@/shared/types/response";
 import { getSession } from "../session-manager/action";
 
 import type {

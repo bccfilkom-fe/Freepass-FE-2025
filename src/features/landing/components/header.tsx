@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@/shared/components/ui/button";
+import { Skeleton } from "@/shared/components/ui/skeleton";
+import { useSessionQuery } from "@/shared/repository/auth/query";
 import { Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Skeleton } from "../../../shared/components/ui/skeleton";
-import { useSessionQuery } from "../../../shared/repository/auth/query";
 
 export default function Header() {
 	const [isOpen, setOpen] = useState(false);

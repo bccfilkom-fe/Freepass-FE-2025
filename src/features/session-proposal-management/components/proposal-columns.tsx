@@ -1,12 +1,12 @@
 "use client";
 
+import { Button } from "@/shared/components/ui/button";
+import { useSheetStore } from "@/shared/hooks/use-sheet";
 import { type SessionTagMap, SessionTypeMap } from "@/shared/lib/map-data";
 import type { UserResponse } from "@/shared/repository/user/dto";
 import type { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon } from "lucide-react";
 import { toast } from "sonner";
-import { Button } from "../../../shared/components/ui/button";
-import { useSheetStore } from "../../../shared/hooks/use-sheet";
 import ReviewProposalFormContainer from "../container/review-proposal-form-container";
 
 export type ProposalSessionColumns = {

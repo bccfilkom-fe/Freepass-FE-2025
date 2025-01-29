@@ -1,6 +1,6 @@
+import type { RoleMap } from "@/shared/lib/map-data";
+import type { PaginationResponse } from "@/shared/types/response";
 import { z } from "zod";
-import type { RoleMap } from "../../lib/map-data";
-import type { PaginationResponse } from "../../types/response";
 
 export type UserResponse = {
 	id: string;

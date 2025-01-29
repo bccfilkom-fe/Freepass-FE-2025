@@ -1,11 +1,11 @@
-import { LoaderIcon } from "lucide-react";
 import {
 	SheetContent,
 	SheetDescription,
 	SheetHeader,
 	SheetTitle,
-} from "../../../shared/components/ui/sheet";
-import { useGetSessionQuery } from "../../../shared/repository/session/query";
+} from "@/shared/components/ui/sheet";
+import { useGetSessionQuery } from "@/shared/repository/session/query";
+import { LoaderIcon } from "lucide-react";
 import ReviewProposalForm from "../components/review-proposal-form";
 
 type Props = {

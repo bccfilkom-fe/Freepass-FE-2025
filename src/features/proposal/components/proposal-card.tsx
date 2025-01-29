@@ -5,19 +5,16 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "../../../shared/components/ui/card";
-import { useSheetStore } from "../../../shared/hooks/use-sheet";
-import {
-	formatDates,
-	timeDifference,
-} from "../../../shared/lib/date-formatter";
+} from "@/shared/components/ui/card";
+import { useSheetStore } from "@/shared/hooks/use-sheet";
+import { formatDates, timeDifference } from "@/shared/lib/date-formatter";
 import {
 	SessionStatusMap,
 	SessionTagMap,
 	SessionTypeMap,
-} from "../../../shared/lib/map-data";
-import { cn } from "../../../shared/lib/utils";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
+} from "@/shared/lib/map-data";
+import { cn } from "@/shared/lib/utils";
+import type { SessionResponse } from "@/shared/repository/session/dto";
 import EditProposalForm from "./edit-proposal-form";
 
 type Props = {

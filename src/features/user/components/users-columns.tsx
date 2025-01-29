@@ -1,12 +1,12 @@
 "use client";
 
+import { Button } from "@/shared/components/ui/button";
+import { useAlertDialogStore } from "@/shared/hooks/use-alert-dialog";
+import { RoleMap } from "@/shared/lib/map-data";
+import { useDeleteUserMutation } from "@/shared/repository/user/query";
 import type { ColumnDef } from "@tanstack/react-table";
 import { EyeIcon, Loader2Icon, Trash2Icon } from "lucide-react";
 import { toast } from "sonner";
-import { Button } from "../../../shared/components/ui/button";
-import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
-import { RoleMap } from "../../../shared/lib/map-data";
-import { useDeleteUserMutation } from "../../../shared/repository/user/query";
 import DeleteUserAlert from "./delete-user-alert";
 
 export type UserColumns = {

@@ -1,7 +1,7 @@
+import SearchInput from "@/shared/components/search-input";
+import usePagination from "@/shared/hooks/use-pagination";
+import { useUsersQuery } from "@/shared/repository/user/query";
 import { toast } from "sonner";
-import SearchInput from "../../../shared/components/search-input";
-import usePagination from "../../../shared/hooks/use-pagination";
-import { useUsersQuery } from "../../../shared/repository/user/query";
 import UsersTable from "../components/users-table";
 
 export default function UsersTableContainer() {

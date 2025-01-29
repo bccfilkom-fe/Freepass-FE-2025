@@ -2,7 +2,7 @@ import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
-} from "../../../shared/components/ui/dialog";
+} from "@/shared/components/ui/dialog";
 import RejectProposalForm from "./reject-proposal-form";
 
 type Prop = {

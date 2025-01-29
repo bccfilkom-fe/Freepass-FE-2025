@@ -1,6 +1,6 @@
 "use client";
 
-import { useSessionQuery } from "../../../shared/repository/auth/query";
+import { useSessionQuery } from "@/shared/repository/auth/query";
 import SessionList from "../components/session-list";
 
 export default function MySessionContainer() {

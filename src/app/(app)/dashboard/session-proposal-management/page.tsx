@@ -1,5 +1,5 @@
+import ProposalsTableContainer from "@/features/session-proposal-management/container/proposals-table-container";
 import { Suspense } from "react";
-import ProposalsTableContainer from "../../../../features/session-proposal-management/container/proposals-table-container";
 
 export default function Page() {
 	return (

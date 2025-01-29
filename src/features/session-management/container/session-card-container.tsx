@@ -1,4 +1,4 @@
-import { useGetSessionQuery } from "../../../shared/repository/session/query";
+import { useGetSessionQuery } from "@/shared/repository/session/query";
 import SessionCard from "../components/session-card";
 
 type Prop = {

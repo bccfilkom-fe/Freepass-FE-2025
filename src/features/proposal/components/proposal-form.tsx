@@ -1,18 +1,8 @@
 "use client";
 
-import {
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-} from "@/shared/components/ui/sheet";
-import { LoaderIcon } from "lucide-react";
-import { Button } from "../../../shared/components/ui/button";
-import { Checkbox } from "../../../shared/components/ui/checkbox";
-import {
-	DateField,
-	DateInput,
-} from "../../../shared/components/ui/datefield-rac";
+import { Button } from "@/shared/components/ui/button";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import { DateField, DateInput } from "@/shared/components/ui/datefield-rac";
 import {
 	Form,
 	FormControl,
@@ -20,10 +10,17 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../shared/components/ui/form";
-import { Input } from "../../../shared/components/ui/input";
-import { Textarea } from "../../../shared/components/ui/textarea";
-import { SessionTagMap } from "../../../shared/lib/map-data";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
+import {
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+} from "@/shared/components/ui/sheet";
+import { Textarea } from "@/shared/components/ui/textarea";
+import { SessionTagMap } from "@/shared/lib/map-data";
+import { LoaderIcon } from "lucide-react";
 import { useCreateSessionForm } from "../hooks/use-create-session-form";
 
 export default function ProposalForm() {

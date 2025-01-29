@@ -1,9 +1,9 @@
 "use client";
 
 import GlobalAlertDialog from "@/shared/hooks/use-alert-dialog";
+import GlobalDialog from "@/shared/hooks/use-dialog";
 import GlobalSheet from "@/shared/hooks/use-sheet";
 import type React from "react";
-import GlobalDialog from "../../../hooks/use-dialog";
 import { Toaster } from "../sonner";
 import ReactQueryProvider from "./react-query";
 

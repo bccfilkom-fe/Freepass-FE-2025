@@ -1,14 +1,6 @@
 "use client";
 
-import {
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-} from "@/shared/components/ui/sheet";
-import { LoaderIcon } from "lucide-react";
-import { Button } from "../../../shared/components/ui/button";
-import { Checkbox } from "../../../shared/components/ui/checkbox";
+import { Button } from "@/shared/components/ui/button";
 import {
 	Form,
 	FormControl,
@@ -16,9 +8,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../shared/components/ui/form";
-import { Input } from "../../../shared/components/ui/input";
-import { Textarea } from "../../../shared/components/ui/textarea";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
+import {
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+} from "@/shared/components/ui/sheet";
+import { LoaderIcon } from "lucide-react";
 import { useCreateUserForm } from "../hooks/use-create-user-form";
 
 export default function CreateUserForm() {

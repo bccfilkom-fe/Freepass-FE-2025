@@ -1,10 +1,10 @@
 "use client";
 
+import { Button } from "@/shared/components/ui/button";
+import { useDeleteReviewMutation } from "@/shared/repository/session/query";
+import type { UserResponse } from "@/shared/repository/user/dto";
 import type { ColumnDef } from "@tanstack/react-table";
 import { TrashIcon } from "lucide-react";
-import { Button } from "../../../shared/components/ui/button";
-import { useDeleteReviewMutation } from "../../../shared/repository/session/query";
-import type { UserResponse } from "../../../shared/repository/user/dto";
 
 export type SessionAttendeeColumns = {
 	session_id: string;

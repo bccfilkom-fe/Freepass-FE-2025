@@ -1,8 +1,8 @@
+import { formatDates } from "@/shared/lib/date-formatter";
+import { SessionTagMap, SessionTypeMap } from "@/shared/lib/map-data";
+import type { SessionResponse } from "@/shared/repository/session/dto";
 import { Armchair, ClockIcon, MapPinIcon } from "lucide-react";
 import Link from "next/link";
-import { formatDates } from "../../../shared/lib/date-formatter";
-import { SessionTagMap, SessionTypeMap } from "../../../shared/lib/map-data";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
 
 type Prop = {
 	session: SessionResponse;

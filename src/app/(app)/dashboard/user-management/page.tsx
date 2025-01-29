@@ -1,11 +1,11 @@
 "use client";
 
+import CreateUserForm from "@/features/user/components/create-user-form";
 import UsersTableContainer from "@/features/user/container/users-table-container";
 import { Button } from "@/shared/components/ui/button";
 import { useSheetStore } from "@/shared/hooks/use-sheet";
 import { PlusIcon } from "lucide-react";
 import { Suspense } from "react";
-import CreateUserForm from "../../../../features/user/components/create-user-form";
 
 export default function Page() {
 	const { openSheet } = useSheetStore();

@@ -1,19 +1,8 @@
 "use client";
 
-import {
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-} from "@/shared/components/ui/sheet";
-import { parseAbsoluteToLocal } from "@internationalized/date";
-import { LoaderIcon } from "lucide-react";
-import { Button } from "../../../shared/components/ui/button";
-import { Checkbox } from "../../../shared/components/ui/checkbox";
-import {
-	DateField,
-	DateInput,
-} from "../../../shared/components/ui/datefield-rac";
+import { Button } from "@/shared/components/ui/button";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import { DateField, DateInput } from "@/shared/components/ui/datefield-rac";
 import {
 	Form,
 	FormControl,
@@ -21,14 +10,22 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../../../shared/components/ui/form";
-import { Input } from "../../../shared/components/ui/input";
-import { Textarea } from "../../../shared/components/ui/textarea";
-import { useAlertDialogStore } from "../../../shared/hooks/use-alert-dialog";
-import { useSheetStore } from "../../../shared/hooks/use-sheet";
-import { SessionTagMap } from "../../../shared/lib/map-data";
-import type { SessionResponse } from "../../../shared/repository/session/dto";
-import { useGetSessionQuery } from "../../../shared/repository/session/query";
+} from "@/shared/components/ui/form";
+import { Input } from "@/shared/components/ui/input";
+import {
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+} from "@/shared/components/ui/sheet";
+import { Textarea } from "@/shared/components/ui/textarea";
+import { useAlertDialogStore } from "@/shared/hooks/use-alert-dialog";
+import { useSheetStore } from "@/shared/hooks/use-sheet";
+import { SessionTagMap } from "@/shared/lib/map-data";
+import type { SessionResponse } from "@/shared/repository/session/dto";
+import { useGetSessionQuery } from "@/shared/repository/session/query";
+import { parseAbsoluteToLocal } from "@internationalized/date";
+import { LoaderIcon } from "lucide-react";
 import { useEditSessionForm } from "../hooks/use-edit-session-form";
 import DeleteProposalAlert from "./delete-proposal-dialog";
 

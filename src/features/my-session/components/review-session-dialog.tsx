@@ -1,9 +1,9 @@
-import { DialogDescription } from "@radix-ui/react-dialog";
 import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
-} from "../../../shared/components/ui/dialog";
+} from "@/shared/components/ui/dialog";
+import { DialogDescription } from "@radix-ui/react-dialog";
 import ReviewSessionForm from "./review-session-form";
 
 type Prop = {

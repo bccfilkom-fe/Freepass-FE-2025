@@ -1,5 +1,5 @@
+import SessionList from "@/features/session/componenets/session-list";
 import { Suspense } from "react";
-import SessionList from "../../../features/session/componenets/session-list";
 
 export default function Page() {
 	return (

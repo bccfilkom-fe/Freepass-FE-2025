@@ -1,9 +1,9 @@
 "use client";
 
+import SearchInput from "@/shared/components/search-input";
+import usePagination from "@/shared/hooks/use-pagination";
+import { useSessionsQuery } from "@/shared/repository/session/query";
 import { toast } from "sonner";
-import SearchInput from "../../../shared/components/search-input";
-import usePagination from "../../../shared/hooks/use-pagination";
-import { useSessionsQuery } from "../../../shared/repository/session/query";
 import SessionTable from "../components/session-table";
 
 export default function SessionsTableContainer() {
