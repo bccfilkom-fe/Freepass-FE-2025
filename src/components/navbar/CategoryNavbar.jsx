@@ -29,9 +29,9 @@ const CategoryNavbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-full mt-4  ">
-      <h4 className="mb-2 text-2xl font-bold">Category</h4>
-      <ul className=" w-full grid grid-cols-2 text-xs md:grid-cols-1 justify-between  md:flex-col gap-4">
+    <div className="w-full mt-4 md:flex justify-between">
+      <h4 className="mb-2 md:w-1/3 text-2xl font-bold">Category</h4>
+      <ul className=" w-full lg:w-1/3 md:w-1/2 grid grid-cols-2 text-xs md:grid-cols-2 justify-between   md:flex-col gap-4">
         {CategoryList.map((item, index) => (
           <li
             key={index}
