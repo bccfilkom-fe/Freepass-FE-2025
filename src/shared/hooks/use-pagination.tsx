@@ -1,4 +1,4 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Adjust as needed
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useDebounce from "./use-debounce";
 
@@ -6,8 +6,8 @@ export default function usePagination() {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
-	const isInitializedRef = useRef(false); // Ref to track if the component has been initialized
-	// Initial state based on URL search parameters
+	const isInitializedRef = useRef(false);
+
 	const [paginationState, setPaginationState] = useState(() => ({
 		pageIndex: searchParams.get("page")
 			? Number(searchParams.get("page")) - 1
@@ -18,16 +18,14 @@ export default function usePagination() {
 		search: searchParams.get("search") || "",
 	}));
 
-	// Debounced version of search state
 	const debouncedSearch = useDebounce(paginationState.search, 500);
 
-	// Utility function to update the query string
 	const updateQueryString = useCallback(
 		(newParams: Record<string, string>) => {
 			const urlSearchParams = new URLSearchParams(searchParams);
 			for (const [key, value] of Object.entries(newParams)) {
 				if (value) urlSearchParams.set(key, value);
-				else urlSearchParams.delete(key); // Remove the key if value is empty
+				else urlSearchParams.delete(key);
 			}
 			router.replace(`${pathname}?${urlSearchParams.toString()}`);
 		},
@@ -48,16 +46,14 @@ export default function usePagination() {
 		[updateQueryString, paginationState.pageSize],
 	);
 
-	// Set search state (debounced effect happens automatically)
 	const handleSearch = useCallback((search: string) => {
 		setPaginationState((prevState) => ({
 			...prevState,
 			search,
-			pageIndex: 0, // Reset to first page on new search
+			pageIndex: 0,
 		}));
 	}, []);
 
-	// Effect to update the query string when the debounced search changes
 	useEffect(() => {
 		if (!isInitializedRef.current) {
 			isInitializedRef.current = true;
@@ -66,7 +62,7 @@ export default function usePagination() {
 
 		updateQueryString({
 			search: debouncedSearch,
-			page: "1", // Reset to the first page
+			page: "1",
 		});
 	}, [debouncedSearch, updateQueryString]);
 
