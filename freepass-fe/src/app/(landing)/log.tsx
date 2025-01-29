@@ -12,7 +12,7 @@ import {
 } from "@tabler/icons-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import type React from "react"; // Added import for React
+import type React from "react";
 
 export function LogSection() {
   const features = [
