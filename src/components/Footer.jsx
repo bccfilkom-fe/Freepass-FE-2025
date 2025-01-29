@@ -12,7 +12,7 @@ const Footer = () => {
                     <div className="mb-6 sm:mb-0">
                         {/* ini logo dan nama */}
                         <div className="flex items-center gap-2">
-                            <img src="public/assets/logo.png" className="h-8" alt="CanEaten Logo" />
+                            <img src="assets/logo.png" className="h-8" alt="CanEaten Logo" />
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CanEaten</span>
                         </div>
                     </div>
