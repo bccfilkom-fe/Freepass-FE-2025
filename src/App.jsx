@@ -1,7 +1,20 @@
-export default function App() {
+import React from "react";
+import Navbar from "./components/Navbar";
+import HeroSection from "./components/HeroSection";
+import Menu from "./components/Menu";
+import Contact from "./components/Contact.jsx";
+import Footer from "./components/Footer.jsx";
+
+const App = () => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <div>
+      <Navbar />
+      <HeroSection />
+      <Menu/>
+      <Contact/>
+      <Footer/>
+    </div>
+  );
+};
+
+export default App;
