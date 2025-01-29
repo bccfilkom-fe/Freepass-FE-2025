@@ -17,7 +17,7 @@ const JeweleryAds = () => {
         </h2>
         <Link
           className="md:px-4 md:py-2 px-2 py-1 bg-primary  w-fit rounded-lg text-white"
-          href={"/products/category/jewelery"}
+          href={"/products/jewelery"}
         >
           Shop Now
         </Link>
